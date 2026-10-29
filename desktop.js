@@ -270,17 +270,30 @@ class WindowManager {
         } else if (appId === 'doom') {
             this.open('win-doom');
             if (window.DoomGame) window.DoomGame.start();
+            if (window.QuestEngine) window.QuestEngine.complete('slack');
         } else if (appId === 'racer') {
             this.open('win-racer');
             if (window.RacerGame) window.RacerGame.start();
+            if (window.QuestEngine) window.QuestEngine.complete('slack');
         } else if (appId === 'rpg') {
             this.open('win-rpg');
             if (window.CaptchaGame) window.CaptchaGame.start();
+            if (window.QuestEngine) window.QuestEngine.complete('slack');
         } else if (appId === 'notepad') {
             this.open('win-notepad');
         } else if (appId === 'minesweeper') {
             this.open('win-minesweeper');
             if (window.MinesweeperGame) window.MinesweeperGame.reset();
+            if (window.QuestEngine) window.QuestEngine.complete('slack');
+        } else if (appId === 'excel') {
+            this.open('win-excel');
+            if (window.ExcelApp) window.ExcelApp.recalculate();
+        } else if (appId === 'mail') {
+            this.open('win-mail');
+            if (window.MailApp) window.MailApp.init();
+        } else if (appId === 'stamper') {
+            this.open('win-stamper');
+            if (window.StamperApp) window.StamperApp.init();
         } else if (appId === 'paint') {
             this.open('win-paint');
         } else if (appId === 'calc') {

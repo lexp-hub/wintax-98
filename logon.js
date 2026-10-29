@@ -62,10 +62,10 @@
                 okBtn.addEventListener('click', () => this.handleLoginClick());
             }
 
-            // Cancel button (Windows 98 cancel: enters session directly)
+            // Cancel button (Cancels login)
             const cancelBtn = document.getElementById('logon-btn-cancel');
             if (cancelBtn) {
-                cancelBtn.addEventListener('click', () => this.performLogin(true));
+                cancelBtn.addEventListener('click', () => this.cancelLogin());
             }
 
             // Help button
@@ -155,16 +155,18 @@
         }
 
         handleLoginClick() {
-            const pwdInput = document.getElementById('access-input-password');
-            const pwd = pwdInput ? pwdInput.value : '';
-
-            if (this.currentProfile === 'arthur' && pwd !== 'coffee1998' && pwd !== '') {
-                if (window.AudioMgr) window.AudioMgr.playSfx('hit');
-                alert("ACCESS DENIED: Invalid network password.\nHint: Arthur always sets his password to 'coffee1998'.");
-                return;
-            }
-
+            // OK button: Logs on to desktop session
             this.performLogin();
+        }
+
+        cancelLogin() {
+            // Cancel button: Cancels login, clears password
+            if (window.AudioMgr && window.AudioMgr.playSfx) {
+                window.AudioMgr.playSfx('ding');
+            }
+            const pwdInput = document.getElementById('access-input-password');
+            if (pwdInput) pwdInput.value = '';
+            alert("LOGON CANCELED:\n\nSession authentication aborted.\nClick OK or press Enter to start Arthur's shift.");
         }
 
         performLogin(isGuest = false) {

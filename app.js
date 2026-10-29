@@ -79,6 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Workday Objectives',
             iconImg: 'assets/icon_notepad.png'
         });
+        window.WinMgr.register('win-excel', {
+            title: 'Microsoft Excel - BUDGET_1998.XLS',
+            iconImg: 'assets/icon_calculator.png'
+        });
+        window.WinMgr.register('win-mail', {
+            title: 'Revenue Mail Express (Arthur Pendelton)',
+            iconImg: 'assets/icon_notepad.png'
+        });
+        window.WinMgr.register('win-stamper', {
+            title: 'Physical Document Stamper v2.0',
+            iconImg: 'assets/icon_paint.png'
+        });
 
         // Open TaxReturn 4.2 window by default
         window.WinMgr.open('win-entratel');
@@ -99,100 +111,75 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', unlockAudio);
     window.addEventListener('keydown', unlockAudio);
 
-    // 1. Verifica Captcha: apre il 90s RPG Battle!
+    // 1. Verifica Captcha: standard bureaucratic declaration check
     const captchaTarget = document.getElementById('captcha-click-target');
     const captchaChk = document.getElementById('captcha-chk');
     const captchaStamp = document.getElementById('captcha-stamp');
 
     if (captchaTarget) {
         captchaTarget.addEventListener('click', () => {
-            if (state.captchaDone) {
-                alert("Formal audit under Sec. 36-B already completed with positive outcome.");
-                return;
+            state.captchaDone = true;
+            if (captchaChk) {
+                captchaChk.innerText = 'X';
+                captchaChk.style.background = '#dcfce7';
             }
-            window.AudioMgr.playSfx('select');
-            window.WinMgr.openApp('rpg');
+            if (captchaStamp) captchaStamp.classList.remove('hidden');
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+            if (window.QuestEngine) window.QuestEngine.complete('review');
         });
     }
 
-    window.onCaptchaSuccess = () => {
-        state.captchaDone = true;
-        if (captchaChk) {
-            captchaChk.innerText = 'X';
-            captchaChk.style.background = '#dcfce7';
-        }
-        if (captchaStamp) captchaStamp.classList.remove('hidden');
-    };
-
-    // 2. Close Java Notification: triggers PANDA_RACE.EXE!
+    // 2. Close Java Notification: dismiss directly
     const popupCloseBtn = document.getElementById('popup-close-trigger');
     const cookiePopup = document.getElementById('annoying-cookie-popup');
 
     if (popupCloseBtn) {
         popupCloseBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (state.popupClosed) return;
-            window.AudioMgr.playSfx('screech');
-            window.WinMgr.openApp('racer');
-        });
-    }
-
-    window.onPopupCloseSuccess = () => {
-        state.popupClosed = true;
-        if (cookiePopup) {
-            cookiePopup.style.transition = 'all 0.3s ease';
-            cookiePopup.style.opacity = '0';
-            setTimeout(() => cookiePopup.remove(), 300);
-        }
-    };
-
-    // 3. Request High Contrast: triggers DOOM_TAX.EXE 3D!
-    const darkModeBtn = document.getElementById('btn-darkmode-toggle');
-    if (darkModeBtn) {
-        darkModeBtn.addEventListener('click', () => {
-            if (!state.doomCleared) {
-                window.WinMgr.openApp('doom');
-            } else {
-                state.isDarkMode = !state.isDarkMode;
-                document.body.classList.toggle('dark-mode', state.isDarkMode);
-                darkModeBtn.innerText = state.isDarkMode ? 'Restore Standard Contrast' : 'Request High Contrast';
-                window.AudioMgr.playSfx('select');
+            state.popupClosed = true;
+            if (window.AudioMgr) window.AudioMgr.playSfx('blip');
+            if (cookiePopup) {
+                cookiePopup.style.transition = 'all 0.3s ease';
+                cookiePopup.style.opacity = '0';
+                setTimeout(() => cookiePopup.remove(), 300);
             }
         });
     }
 
-    window.onSoulsSuccess = () => {
-        state.doomCleared = true;
-        state.isDarkMode = true;
-        document.body.classList.add('dark-mode');
-        if (darkModeBtn) {
-            darkModeBtn.innerText = 'Restore Standard Contrast';
-        }
-    };
+    // 3. Request High Contrast: standard theme toggle
+    const darkModeBtn = document.getElementById('btn-darkmode-toggle');
+    if (darkModeBtn) {
+        darkModeBtn.addEventListener('click', () => {
+            state.isDarkMode = !state.isDarkMode;
+            document.body.classList.toggle('dark-mode', state.isDarkMode);
+            darkModeBtn.innerText = state.isDarkMode ? 'Restore Standard Contrast' : 'Request High Contrast';
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+        });
+    }
 
     // 4. Transmit Tax Return to Central IRS Mainframe
     const submitBtn = document.getElementById('btn-submit-form');
     if (submitBtn) {
         submitBtn.addEventListener('click', () => {
-            window.AudioMgr.playSfx('select');
-            if (!state.captchaDone || !state.popupClosed || !state.doomCleared) {
-                window.AudioMgr.playSfx('hit');
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+            if (!state.captchaDone) {
+                if (window.AudioMgr) window.AudioMgr.playSfx('hit');
                 alert(
                     "[WINTAX 98 TRANSMISSION HALTED]\n\n" +
                     "Cannot complete electronic filing:\n" +
-                    (!state.captchaDone ? "- Sec. 36-B physical in-person audit check incomplete (click the verification checkbox);\n" : "") +
-                    (!state.popupClosed ? "- Java Tax Applet warning open (click [X] on the popup and complete the Panda getaway);\n" : "") +
-                    (!state.doomCleared ? "- Tax basement corridors not cleared (click Request High Contrast to launch DOOM TAX).\n" : "")
+                    "- Section IV: Taxpayer certification declaration must be verified (click the verification checkbox under penalty of perjury)."
                 );
             } else {
-                window.AudioMgr.playSfx('victory');
+                if (window.AudioMgr) window.AudioMgr.playSfx('victory');
                 if (window.QuestEngine) {
                     window.QuestEngine.complete('filing');
                 }
                 alert(
                     "[APPROVED] ELECTRONIC FILING COMPLETED SUCCESSFULLY.\n\n" +
                     "Confirmation Number: IRS-2024-9948201-TAX\n" +
-                    "Tax return archived in Federal repositories. Refund of $ 14.20 approved."
+                    "Taxpayer: RSSMRA80A01H501U (Arthur P. Pendelton filed on behalf)\n" +
+                    "Status: Certified by Desk 14-B Internal Examiner.\n" +
+                    "Refund approved: $ 14.20 (check mailed within 6-8 months)."
                 );
             }
         });

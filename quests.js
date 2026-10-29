@@ -25,37 +25,37 @@
                 },
                 {
                     id: 'memo',
-                    title: '3. Review Supervisor\'s Directive',
-                    desc: 'Browse C:\\MEMOS\\ in File Explorer and read DIRECTOR_VANCE_WARNING.txt in Notepad.',
-                    hint: 'Open File Explorer -> MEMOS folder.',
+                    title: '3. Read Supervisor\'s Email Directive',
+                    desc: 'Open Revenue Mail Express and read Director Vance\'s urgent email about missing pens.',
+                    hint: 'Open Mail Express from desktop or Start Menu.',
                     done: false
                 },
                 {
-                    id: 'doom',
-                    title: '4. Clear Basement Archives (DOOM)',
-                    desc: 'Launch DOOM_TAX.EXE and staple all 4 roaming demonic tax folders in the archive corridors.',
-                    hint: 'Double-click Doom_Tax on desktop or Start Menu.',
+                    id: 'excel',
+                    title: '4. Audit Paperclip Budget in Excel 97',
+                    desc: 'Open Microsoft Excel, inspect BUDGET_1998.XLS and verify total expenses with =SUM formula.',
+                    hint: 'Open Excel 97 on desktop -> check cell D10.',
                     done: false
                 },
                 {
-                    id: 'paint',
-                    title: '5. Bureaucratic Stamp Certification',
-                    desc: 'Open Paint, apply the [IRS APPROVED] official stamp, and save the document to disk.',
-                    hint: 'Open Paint -> click [STAMP OK] -> File -> Save.',
+                    id: 'stamper',
+                    title: '5. Physical Document Rubber Stamping',
+                    desc: 'Launch Document Stamper and certify or reject 3 pending taxpayer exemption notices.',
+                    hint: 'Double-click Document Stamper on desktop.',
                     done: false
                 },
                 {
-                    id: 'rpg',
-                    title: '6. Win the In-Person Audit (RPG)',
-                    desc: 'Defeat or stun the wild Tax Auditor in Audit RPG 90s using itemized deductions.',
-                    hint: 'Click the verification checkbox on Form 1040 or Audit_RPG icon.',
+                    id: 'review',
+                    title: '6. Review Form 1040 Deductions',
+                    desc: 'Open TaxReturn 4.2 and click the Section IV taxpayer certification declaration checkbox.',
+                    hint: 'Open TaxReturn 4.2 -> click Section IV checkbox.',
                     done: false
                 },
                 {
-                    id: 'racer',
-                    title: '7. Highway Patrol Getaway (Panda Race)',
-                    desc: 'Outrun the supervisor\'s surveillance fleet behind the wheel of the 1990s Fiat Panda.',
-                    hint: 'Close the Java Cookie Popup or launch Panda_Race.',
+                    id: 'slack',
+                    title: '7. Slacking Off at the Desk',
+                    desc: 'Waste government time by launching any desktop distraction (Minesweeper, Doom, Panda Race, or RPG).',
+                    hint: 'Launch any retro game shortcut on the desktop.',
                     done: false
                 },
                 {

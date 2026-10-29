@@ -1366,3 +1366,278 @@ body.dark-mode .win-captcha-box { background: #1e222b; }
     color: #ffffff;
 }
 
+/* ==========================================================================
+   MICROSOFT EXCEL 97 / SPREADSHEET STYLING
+   ========================================================================== */
+.excel-toolbar {
+    padding: 3px 6px;
+    background: var(--win-bg);
+    border-bottom: 1px solid #808080;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+}
+
+.excel-formula-bar {
+    padding: 3px 6px;
+    background: #ffffff;
+    border-bottom: 2px inset #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+}
+
+.excel-coord-badge {
+    background: #e2e8f0;
+    border: 1px inset #ffffff;
+    padding: 2px 8px;
+    font-family: monospace;
+    font-weight: bold;
+    min-width: 45px;
+    text-align: center;
+}
+
+.excel-grid-container {
+    flex: 1;
+    overflow: auto;
+    background: #ffffff;
+    border: 2px inset #ffffff;
+}
+
+.excel-grid-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 11px;
+    font-family: var(--win-font);
+    table-layout: fixed;
+}
+
+.excel-header-corner {
+    width: 35px;
+    background: #d4d0c8;
+    border: 1px outset #ffffff;
+    user-select: none;
+}
+
+.excel-col-header {
+    background: #d4d0c8;
+    border: 1px outset #ffffff;
+    padding: 2px 4px;
+    text-align: center;
+    font-weight: normal;
+    color: #333333;
+    user-select: none;
+    width: 100px;
+}
+
+.excel-row-header {
+    background: #d4d0c8;
+    border: 1px outset #ffffff;
+    padding: 2px 6px;
+    text-align: center;
+    font-weight: normal;
+    color: #333333;
+    user-select: none;
+    width: 35px;
+}
+
+.excel-cell {
+    background: #ffffff;
+    border: 1px solid #d4d0c8;
+    padding: 3px 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    cursor: cell;
+}
+
+.excel-cell:focus, .excel-cell.active {
+    border: 2px solid #000000 !important;
+    background: #ffffff;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   REVENUE MAIL EXPRESS (OUTLOOK 98)
+   ========================================================================== */
+.mail-toolbar {
+    padding: 3px 6px;
+    background: var(--win-bg);
+    border-bottom: 1px solid #808080;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mail-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.mail-folder-pane {
+    width: 140px;
+    border-right: 2px inset #ffffff;
+    background: #ffffff;
+    padding: 6px;
+    font-size: 11px;
+    overflow-y: auto;
+}
+
+.mail-folder-item {
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.mail-folder-item:hover {
+    background: #e2e8f0;
+}
+
+.mail-folder-item.active {
+    background: #0a246a;
+    color: #ffffff;
+}
+
+.mail-content-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mail-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.mail-list-table th {
+    background: #d4d0c8;
+    border: 1px outset #ffffff;
+    padding: 2px 6px;
+    text-align: left;
+    font-weight: normal;
+    user-select: none;
+}
+
+.mail-row {
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.mail-row:hover {
+    background: #eff6ff;
+}
+
+.mail-row.selected {
+    background: #0a246a !important;
+    color: #ffffff !important;
+}
+
+.mail-row.selected td {
+    color: #ffffff !important;
+}
+
+.mail-row.unread {
+    font-weight: bold;
+}
+
+.mail-row td {
+    padding: 4px 6px;
+}
+
+.mail-preview-pane {
+    height: 150px;
+    border-top: 2px inset #ffffff;
+    background: #ffffff;
+    padding: 8px 12px;
+    overflow-y: auto;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   BUREAUCRATIC RUBBER STAMP CERTIFIER
+   ========================================================================== */
+.stamper-desk {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    flex: 1;
+    background: #854d0e22;
+}
+
+.stamper-paper {
+    flex: 1;
+    background: #fffef9;
+    border: 1px solid #d1d5db;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+    padding: 16px;
+    position: relative;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #1f2937;
+    min-height: 240px;
+}
+
+.stamper-seal-display {
+    position: absolute;
+    top: 35px;
+    right: 25px;
+    padding: 8px 14px;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    border: 3px dashed;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.seal-rejected {
+    color: #dc2626;
+    border-color: #dc2626;
+    transform: rotate(-10deg);
+}
+
+.seal-audit {
+    color: #ea580c;
+    border-color: #ea580c;
+    transform: rotate(8deg);
+}
+
+.seal-certified {
+    color: #2563eb;
+    border-color: #2563eb;
+    transform: rotate(-5deg);
+}
+
+.stamp-picker-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 11px;
+    border: 2px outset #ffffff;
+    cursor: pointer;
+    background: var(--win-bg);
+}
+
+.stamp-picker-btn.active {
+    border-style: inset;
+    background: #fed7aa;
+}
+
+

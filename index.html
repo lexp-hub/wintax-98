@@ -84,7 +84,7 @@
                         </div>
                         <div style="display: flex; gap: 6px; margin-top: 10px; justify-content: flex-end;">
                             <button type="button" id="logon-btn-ok" class="win-btn" onclick="window.LogonMgr.handleLoginClick()" style="font-weight: bold; min-width: 75px; height: 26px; font-size: 11px;">OK</button>
-                            <button type="button" id="logon-btn-cancel" class="win-btn" onclick="window.LogonMgr.performLogin(true)" style="min-width: 75px; height: 26px; font-size: 11px;">Cancel</button>
+                            <button type="button" id="logon-btn-cancel" class="win-btn" onclick="window.LogonMgr.cancelLogin()" style="min-width: 75px; height: 26px; font-size: 11px;">Cancel</button>
                             <button type="button" id="logon-btn-help" class="win-btn" onclick="alert('Password Hint: Arthur always uses \'coffee1998\' because coffee is the only thing keeping him awake.')" style="min-width: 65px; height: 26px; font-size: 11px;"><u>H</u>elp</button>
                         </div>
                     </div>
@@ -219,6 +219,30 @@
                 <img src="assets/icon_folder.png" width="32" height="32" style="image-rendering: pixelated;" alt="File Explorer">
             </div>
             <span class="desktop-icon-label">File Explorer</span>
+        </div>
+
+        <!-- Icon: Microsoft Excel 97 -->
+        <div class="desktop-icon" data-app="excel" title="Double-click to open Microsoft Excel 97">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_calculator.png" width="32" height="32" style="image-rendering: pixelated;" alt="Excel 97">
+            </div>
+            <span class="desktop-icon-label">Excel 97</span>
+        </div>
+
+        <!-- Icon: Revenue Mail Express -->
+        <div class="desktop-icon" data-app="mail" title="Double-click to open Revenue Mail Express">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="Mail Express">
+            </div>
+            <span class="desktop-icon-label">Mail Express</span>
+        </div>
+
+        <!-- Icon: Document Stamper -->
+        <div class="desktop-icon" data-app="stamper" title="Double-click to open Bureaucratic Document Stamper">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_paint.png" width="32" height="32" style="image-rendering: pixelated;" alt="Document Stamper">
+            </div>
+            <span class="desktop-icon-label">Stamper</span>
         </div>
 
         <!-- Icon 2: TaxReturn 4.2 -->
@@ -1243,6 +1267,224 @@ Type "HELP" for the list of available tax and system commands.
         </div>
     </div>
 
+    <!-- MICROSOFT EXCEL 97 / TAXCALC SHEETS (win-excel) -->
+    <div id="win-excel" class="win-window hidden" style="top: 40px; left: 80px; width: 720px; height: 500px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_calculator.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Microsoft Excel 97 - [DEPT_AUDIT_1998.XLS]</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.ExcelApp.saveToVfs()"><u>F</u>ile</span>
+            <span onclick="window.SystemAlert('Standard Excel Cut/Copy/Paste operations supported.', 'Edit', 'info')"><u>E</u>dit</span>
+            <span onclick="window.SystemAlert('Formula Bar active. Grid supports arithmetic formulas like =SUM(B2:B8) and =B2*C2.', 'View', 'info')"><u>V</u>iew</span>
+            <span onclick="window.ExcelApp.insertAutoSum()"><u>I</u>nsert</span>
+            <span onclick="window.SystemAlert('Cell Format: General / Currency ($) / Number', 'Format', 'info')"><u>F</u>ormat</span>
+            <span onclick="window.ExcelApp.recalcAll(); window.SystemAlert('Worksheet formulas recalculated.', 'Tools', 'info')"><u>T</u>ools</span>
+            <span onclick="window.SystemAlert('Microsoft Excel 97 (SR-2)\nWinTax 98 State Revenue Edition\nFormulas supported: =SUM(A1:A5), =AVERAGE, =COUNT, and basic arithmetic.', 'About Microsoft Excel', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="excel-toolbar">
+            <button type="button" class="excel-tb-btn" onclick="window.ExcelApp.saveToVfs()" title="Save Spreadsheet to C:\TAX_1998">
+                <img src="assets/icon_floppy.png" width="16" height="16" style="image-rendering:pixelated;" alt="Save">
+            </button>
+            <div class="start-divider" style="height: 18px; margin: 0 4px;"></div>
+            <button type="button" class="excel-tb-btn" onclick="window.ExcelApp.insertAutoSum()" title="AutoSum (=SUM...)">
+                <strong style="font-size: 13px; font-family: serif;">&Sigma;</strong>
+            </button>
+            <button type="button" class="excel-tb-btn" onclick="window.ExcelApp.recalcAll()" title="Recalculate All Cells">
+                <span>&#8635; Recalc</span>
+            </button>
+            <span style="font-size: 11px; color: #444; margin-left: 8px;">Audit Mode: Strict Compliance</span>
+        </div>
+        <div class="excel-formula-bar">
+            <div id="excel-active-coord" class="excel-coord-box">A1</div>
+            <div style="font-weight: bold; font-family: serif; font-size: 13px; margin: 0 4px; color: #333;"><i>fx</i></div>
+            <input type="text" id="excel-formula-input" class="excel-fx-input" placeholder="Enter value or formula (=SUM(B2:B8), =B2*C2)..." spellcheck="false">
+        </div>
+        <div class="win-content" style="padding: 0; background: #ffffff; display: flex; flex-direction: column;">
+            <div class="excel-grid-container" id="excel-grid-wrapper">
+                <table class="excel-table" id="excel-grid-table"></table>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane" style="flex: 2;">Ready | Sheet1</div>
+            <div class="win-status-pane">AutoSum: Enabled</div>
+            <div class="win-status-pane">NUM</div>
+        </div>
+    </div>
+
+    <!-- REVENUE MAIL EXPRESS (win-mail) -->
+    <div id="win-mail" class="win-window hidden" style="top: 50px; left: 120px; width: 700px; height: 480px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_notepad.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Revenue Mail Express 98 - [arthur.pendelton@rev.state.gov]</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Revenue Mail Server v4.1 Connected via 28.8k dialup modem.', 'File', 'info')"><u>F</u>ile</span>
+            <span onclick="window.MailApp.replyCurrent()"><u>E</u>dit</span>
+            <span onclick="window.MailApp.render()"><u>V</u>iew</span>
+            <span onclick="window.MailApp.replyCurrent()"><u>M</u>essage</span>
+            <span onclick="window.SystemAlert('Revenue Mail Express 98 - State Bureaucracy Intranet Mail Client.', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="mail-toolbar">
+            <button type="button" class="win-btn" id="btn-mail-reply" onclick="window.MailApp.replyCurrent()" style="font-size: 11px; padding: 2px 8px;">
+                <u>R</u>eply Standard Form
+            </button>
+            <button type="button" class="win-btn" id="btn-mail-sendrec" onclick="window.MailApp.checkNewMail()" style="font-size: 11px; padding: 2px 8px;">
+                <u>S</u>end / Receive
+            </button>
+            <button type="button" class="win-btn" onclick="window.SystemAlert('Arthur Pendleton\nArthur.Pendelton@rev.state.gov\nDirector Eugene Vance\nEugene.Vance@rev.state.gov\nBob Miller\nBob.Miller@rev.state.gov', 'State Revenue Address Book', 'info')" style="font-size: 11px; padding: 2px 8px;">
+                Addresses
+            </button>
+        </div>
+        <div class="win-content mail-layout" style="background: #c0c0c0; padding: 4px; gap: 4px;">
+            <div class="mail-sidebar">
+                <div class="mail-folder-item active">
+                    <img src="assets/icon_folder.png" width="16" height="16" alt="">
+                    <span id="mail-inbox-count">Inbox (5)</span>
+                </div>
+                <div class="mail-folder-item" onclick="window.SystemAlert('Outbox empty. All outgoing audits transmitted.', 'Outbox', 'info')">
+                    <img src="assets/icon_folder.png" width="16" height="16" alt="">
+                    <span>Outbox</span>
+                </div>
+                <div class="mail-folder-item" onclick="window.SystemAlert('Sent Items: 1,482 bureaucratic notices sent this year.', 'Sent Items', 'info')">
+                    <img src="assets/icon_folder.png" width="16" height="16" alt="">
+                    <span>Sent Items</span>
+                </div>
+                <div class="mail-folder-item" onclick="window.SystemAlert('Deleted Items folder contains 42 discarded coffee committee memos.', 'Deleted Items', 'info')">
+                    <img src="assets/icon_recycle.png" width="16" height="16" alt="">
+                    <span>Deleted Items</span>
+                </div>
+            </div>
+            <div class="mail-content-pane">
+                <div class="mail-list-table-container">
+                    <table class="mail-list-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 24px;">!</th>
+                                <th style="width: 170px;">From</th>
+                                <th>Subject</th>
+                                <th style="width: 85px; text-align: right;">Received</th>
+                                <th style="width: 45px; text-align: right;">Size</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mail-list-tbody">
+                            <!-- Populated by mail.js -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mail-preview-pane">
+                    <div class="mail-preview-header">
+                        <div><strong>From:</strong> <span id="mail-preview-from">-</span></div>
+                        <div><strong>Subject:</strong> <span id="mail-preview-subject">-</span></div>
+                        <div><strong>Date:</strong> <span id="mail-preview-date">-</span></div>
+                    </div>
+                    <div id="mail-preview-body" class="mail-preview-body">
+                        Select an email from the list above to read.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane" style="flex: 2;">Connected to rev.state.gov (Port 110)</div>
+            <div class="win-status-pane">5 Message(s)</div>
+        </div>
+    </div>
+
+    <!-- BUREAUCRATIC DOCUMENT STAMPER (win-stamper) -->
+    <div id="win-stamper" class="win-window hidden" style="top: 70px; left: 150px; width: 620px; height: 490px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_paint.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Physical Document Certification Spooler v2.0 - Desk 14-B</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.StamperApp.applyStamp()"><u>S</u>tamp Current</span>
+            <span onclick="window.StamperApp.nextDocket()"><u>N</u>ext Docket</span>
+            <span onclick="window.StamperApp.prevDocket()"><u>P</u>revious</span>
+            <span onclick="window.SystemAlert('State Regulation 84-B: All incoming citizen claims must bear an official colored stamp before filing.', 'Certification Rules', 'info')"><u>?</u> Regulations</span>
+        </div>
+        <div class="win-content stamper-desk" style="display: flex; flex-direction: column; gap: 8px; padding: 10px; background: #2f4f4f;">
+            <div class="stamper-controls" style="display: flex; gap: 8px; align-items: center; background: #c0c0c0; border: 2px outset #ffffff; padding: 6px;">
+                <span style="font-weight: bold; font-size: 11px;">Active Rubber Stamp:</span>
+                <button type="button" class="win-btn stamp-picker-btn active" data-stamp="REJECTED" onclick="window.StamperApp.setStampType('REJECTED')" style="color: #b91c1c; font-weight: bold;">
+                    REJECTED [RED]
+                </button>
+                <button type="button" class="win-btn stamp-picker-btn" data-stamp="AUDIT" onclick="window.StamperApp.setStampType('AUDIT')" style="color: #c2410c; font-weight: bold;">
+                    AUDIT MANDATORY [ORANGE]
+                </button>
+                <button type="button" class="win-btn stamp-picker-btn" data-stamp="CERTIFIED" onclick="window.StamperApp.setStampType('CERTIFIED')" style="color: #047857; font-weight: bold;">
+                    APPROVED &amp; FILED [GREEN]
+                </button>
+            </div>
+
+            <!-- Paper Docket on Arthur's desk -->
+            <div class="stamper-paper" style="flex: 1; background: #fdfbf7; border: 2px inset #ffffff; box-shadow: 3px 3px 6px rgba(0,0,0,0.4); padding: 16px; position: relative; font-family: 'Times New Roman', serif; color: #111; overflow-y: auto;">
+                <div style="border-bottom: 2px solid #333; padding-bottom: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">State Revenue &amp; Taxation Bureau</div>
+                        <div style="font-size: 11px; color: #555;">Official Physical Claim Docket &bull; Division of Itemized Deductions</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span id="stamper-doc-id" style="font-family: monospace; font-weight: bold; background: #eee; padding: 2px 6px; border: 1px solid #999;">DOCKET-1094</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 8px; font-size: 12px;">
+                    <strong>Citizen / Taxpayer:</strong> <span id="stamper-doc-citizen" style="border-bottom: 1px dotted #333; font-weight: bold;">Citizen</span>
+                </div>
+                <div style="margin-bottom: 12px; font-size: 12px;">
+                    <strong>Matter Summary:</strong> <span id="stamper-doc-title" style="font-style: italic;">Title</span>
+                </div>
+
+                <div id="stamper-doc-summary" style="background: #fafafa; border: 1px solid #ddd; padding: 10px; font-size: 12px; line-height: 1.5; min-height: 90px; color: #222;">
+                    Docket details loading...
+                </div>
+
+                <!-- Red/Orange/Green Applied Rubber Stamp Seal -->
+                <div id="stamper-applied-seal" class="stamper-seal-display hidden">
+                    REJECTED
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #c0c0c0; border: 2px outset #ffffff; padding: 6px;">
+                <div style="display: flex; gap: 6px;">
+                    <button type="button" class="win-btn" onclick="window.StamperApp.prevDocket()" style="min-width: 80px;">&laquo; Prev Docket</button>
+                    <button type="button" class="win-btn" onclick="window.StamperApp.nextDocket()" style="min-width: 80px;">Next Docket &raquo;</button>
+                </div>
+                <button type="button" class="win-btn win-btn-stamp-action" onclick="window.StamperApp.applyStamp()" style="font-weight: bold; padding: 4px 16px; background: #dfdfdf; font-size: 12px; border: 2px outset #ffffff;">
+                    &#9632; APPLY RUBBER STAMP
+                </button>
+                <div id="stamper-progress-count" style="font-size: 11px; font-family: monospace;">
+                    Docket 1 of 5 | Processed: 0
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane" style="flex: 2;">Physical Certification Station 14-B</div>
+            <div class="win-status-pane">Stamps Remaining: Infinite Ink</div>
+        </div>
+    </div>
+
     <!-- JAVA COOKIE POPUP (TRIGGER PANDA RACE) -->
     <div id="annoying-cookie-popup" class="win-popup-dialog">
         <div class="win-titlebar" style="background: linear-gradient(90deg, #708090, #a0b0c0);">
@@ -1277,6 +1519,18 @@ Type "HELP" for the list of available tax and system commands.
             <div class="start-item" onclick="window.WinMgr.openApp('entratel')">
                 <img src="assets/icon_computer.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
                 <strong>TaxReturn 4.2</strong>
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('excel')">
+                <img src="assets/icon_calculator.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Microsoft Excel 97
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('mail')">
+                <img src="assets/icon_notepad.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Revenue Mail Express
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('stamper')">
+                <img src="assets/icon_paint.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Document Stamper v2.0
             </div>
             <div class="start-item" onclick="window.WinMgr.openApp('calc')">
                 <img src="assets/icon_calculator.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
@@ -1366,6 +1620,9 @@ Type "HELP" for the list of available tax and system commands.
     <script src="vfs.js"></script>
     <script src="quests.js"></script>
     <script src="logon.js"></script>
+    <script src="excel.js"></script>
+    <script src="mail.js"></script>
+    <script src="stamper.js"></script>
     <script src="doom.js"></script>
     <script src="racer.js"></script>
     <script src="captcha_rpg.js"></script>
