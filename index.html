@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinTax 98 - IRS TaxReturn v4.2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ====================================================================
+         DESKTOP WINTAX 98
+         ==================================================================== -->
+    <div id="desktop">
+
+        <!-- Icon 1: File Explorer (C:\) -->
+        <div class="desktop-icon" data-app="explorer" title="Double-click to open File Explorer">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_folder.png" width="32" height="32" style="image-rendering: pixelated;" alt="File Explorer">
+            </div>
+            <span class="desktop-icon-label">File Explorer</span>
+        </div>
+
+        <!-- Icon 2: TaxReturn 4.2 -->
+        <div class="desktop-icon" data-app="entratel" title="Double-click to open TaxReturn Form 1040">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_computer.png" width="32" height="32" style="image-rendering: pixelated;" alt="TaxReturn 4.2">
+            </div>
+            <span class="desktop-icon-label">TaxReturn 4.2</span>
+        </div>
+
+        <!-- Icon 3: Calculator -->
+        <div class="desktop-icon" data-app="calc" title="Double-click to open Calculator">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_calculator.png" width="32" height="32" style="image-rendering: pixelated;" alt="Calculator">
+            </div>
+            <span class="desktop-icon-label">Calculator</span>
+        </div>
+
+        <!-- Icon 4: DOS Prompt -->
+        <div class="desktop-icon" data-app="cmd" title="Double-click to open DOS Prompt">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_msdos.png" width="32" height="32" style="image-rendering: pixelated;" alt="DOS Prompt">
+            </div>
+            <span class="desktop-icon-label">DOS Prompt</span>
+        </div>
+
+        <!-- Icon 5: DOOM_TAX.EXE -->
+        <div class="desktop-icon" data-app="doom" title="Double-click to launch 3D DOOM Tax Audit">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_msdos.png" width="32" height="32" style="image-rendering: pixelated;" alt="Doom Tax">
+            </div>
+            <span class="desktop-icon-label">Doom_Tax</span>
+        </div>
+
+        <!-- Icon 6: PANDA_RACE.EXE -->
+        <div class="desktop-icon" data-app="racer" title="Double-click to launch Panda Getaway">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_game.png" width="32" height="32" style="image-rendering: pixelated;" alt="Panda Race">
+            </div>
+            <span class="desktop-icon-label">Panda_Race</span>
+        </div>
+
+        <!-- Icon 7: Minesweeper -->
+        <div class="desktop-icon" data-app="minesweeper" title="Double-click to open Minesweeper">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_minesweeper.png" width="32" height="32" style="image-rendering: pixelated;" alt="Minesweeper">
+            </div>
+            <span class="desktop-icon-label">Minesweeper</span>
+        </div>
+
+        <!-- Icon 8: Notepad -->
+        <div class="desktop-icon" data-app="notepad" title="Double-click to open Notepad">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="Notepad">
+            </div>
+            <span class="desktop-icon-label">Notepad</span>
+        </div>
+
+        <!-- Icon 9: Paint -->
+        <div class="desktop-icon" data-app="paint" title="Double-click to open Paint">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_paint.png" width="32" height="32" style="image-rendering: pixelated;" alt="Paint">
+            </div>
+            <span class="desktop-icon-label">Paint</span>
+        </div>
+
+        <!-- Icon 10: Control Panel -->
+        <div class="desktop-icon" data-app="control" title="Double-click to open Control Panel">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_control_panel.png" width="32" height="32" style="image-rendering: pixelated;" alt="Control Panel">
+            </div>
+            <span class="desktop-icon-label">Control Panel</span>
+        </div>
+
+        <!-- Icon 11: Task Manager -->
+        <div class="desktop-icon" data-app="taskmgr" title="Double-click to open Task Manager">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_taskmgr.png" width="32" height="32" style="image-rendering: pixelated;" alt="Task Manager">
+            </div>
+            <span class="desktop-icon-label">Task Manager</span>
+        </div>
+
+        <!-- Icon 12: Recycle Bin -->
+        <div class="desktop-icon" data-app="trash" title="Double-click to open Recycle Bin">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_recycle.png" width="32" height="32" style="image-rendering: pixelated;" alt="Recycle Bin">
+            </div>
+            <span class="desktop-icon-label">Recycle Bin</span>
+        </div>
+
+        <!-- Icon 13: Coffee.exe -->
+        <div class="desktop-icon" data-app="caffe" title="Double-click to execute Coffee.exe">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_cd.png" width="32" height="32" style="image-rendering: pixelated;" alt="Coffee.exe">
+            </div>
+            <span class="desktop-icon-label">Coffee.exe</span>
+        </div>
+
+        <!-- Icon 14: Format_C -->
+        <div class="desktop-icon" data-app="format" title="Double-click to format C: drive">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_hard_disk.png" width="32" height="32" style="image-rendering: pixelated;" alt="Format_C">
+            </div>
+            <span class="desktop-icon-label">Format_C</span>
+        </div>
+
+    </div>
+
+    <!-- ====================================================================
+         MAIN APPLICATION WINDOW: TAXRETURN v4.2
+         ==================================================================== -->
+    <div id="win-entratel" class="win-window active" style="top: 25px; left: 110px; width: 680px; height: 530px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_computer.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Internal Revenue Service - TaxReturn v4.2 [Form 1040 / Schedule-A]</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min" title="Minimize">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max" title="Maximize">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close" title="Close">X</button>
+            </div>
+        </div>
+
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Form 1040 Individual Tax Return 2024\nStatus: Pending Electronic Transmission', 'File', 'info')"><u>F</u>ile</span>
+            <span onclick="window.SystemAlert('Edit Taxpayer Schedule Records', 'Edit', 'info')"><u>E</u>dit</span>
+            <span onclick="window.SystemAlert('Schedule-A Itemized Deductions (19% rate applicable)', 'Schedule-A', 'info')"><u>S</u>chedule-A</span>
+            <span onclick="window.SystemAlert('IRS Electronic Filing Modem Protocol v4.2', 'E-Filing', 'info')"><u>E</u>-Filing</span>
+            <span onclick="window.SystemAlert('WinTax 98 Official Taxpayer Help Manual', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+
+        <div class="win-content">
+            <div class="win-banner-alert">
+                <svg width="18" height="18" viewBox="0 0 16 16" style="flex-shrink: 0;">
+                    <polygon points="8,1 15,14 1,14" fill="#ffff00" stroke="#000" stroke-width="1"/>
+                    <rect x="7.2" y="5.5" width="1.6" height="4.5" fill="#000"/>
+                    <circle cx="8" cy="12" r="0.9" fill="#000"/>
+                </svg>
+                <div>
+                    <strong>SYSTEM WARNING:</strong> The central mainframe conducts unannounced compliance audits. Retain stamped receipts for inspection upon demand.
+                </div>
+            </div>
+
+            <form id="inps-form" onsubmit="event.preventDefault();">
+                <fieldset class="win-fieldset">
+                    <legend class="win-legend">Section I - Taxpayer Identification</legend>
+                    <div class="win-grid-2">
+                        <div class="win-form-row">
+                            <label for="f-cf">Taxpayer ID (SSN/TIN):</label>
+                            <input type="text" id="f-cf" class="win-input" value="RSSMRA80A01H501U" readonly>
+                        </div>
+                        <div class="win-form-row">
+                            <label for="f-office">Regional IRS Tax District:</label>
+                            <select id="f-office" class="win-select">
+                                <option>District Office New York (Manhattan)</option>
+                                <option>District Office Chicago 2</option>
+                                <option>District Office Los Angeles 1</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="win-fieldset">
+                    <legend class="win-legend">Section II - Deductions & Credits (19% Itemized)</legend>
+                    <div class="win-grid-2">
+                        <div class="win-form-row">
+                            <label for="f-spese-med">Line 1a - Ordinary Medical Expenses ($):</label>
+                            <input type="text" id="f-spese-med" class="win-input" value="230.50">
+                        </div>
+                        <div class="win-form-row">
+                            <label for="f-spese-extra">Line 1b - Continuous Tractor Feed Paper ($):</label>
+                            <input type="text" id="f-spese-extra" class="win-input" value="48.00">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Trigger DOOM 3D Raycaster -->
+                <fieldset class="win-fieldset">
+                    <legend class="win-legend">Section III - Display Properties</legend>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>High-Contrast Retro 3D Archive View (Night Mode)</strong>
+                            <div style="font-size: 10px; color: #555555;">Launches the security sweep through the archive corridors.</div>
+                        </div>
+                        <button type="button" id="btn-darkmode-toggle" class="win-btn">
+                            Request High Contrast
+                        </button>
+                    </div>
+                </fieldset>
+
+                <!-- Trigger Captcha 90s RPG Battle -->
+                <fieldset class="win-fieldset">
+                    <legend class="win-legend">Section IV - Mandatory Physical Verification (Audit Check)</legend>
+                    <div class="win-captcha-box">
+                        <div class="win-chk-wrap" id="captcha-click-target">
+                            <div class="win-chk-square" id="captcha-chk"></div>
+                            <div>
+                                <div style="font-weight: bold;">I declare under penalty of perjury that I am a living human and not an automated tax fraud script</div>
+                                <div style="font-size: 10px; color: #555555;">Click the checkbox to initiate physical taxpayer identity verification</div>
+                            </div>
+                        </div>
+                        <div id="captcha-stamp" class="win-stamp-ok hidden">AUDIT VERIFIED SEC. 36</div>
+                    </div>
+                </fieldset>
+
+                <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; padding-top: 8px; border-top: 1px solid #808080;">
+                    <button type="button" id="btn-submit-form" class="win-btn win-btn-default">
+                        Submit Return
+                    </button>
+                    <button type="button" id="btn-print-void" class="win-btn">
+                        Print Voucher
+                    </button>
+                    <button type="button" id="btn-panic-test" class="win-btn" style="color: #990000;">
+                        Surprise Audit (Test)
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="win-statusbar">
+            <div class="win-status-pane" style="flex-grow: 2;">Status: IRS Mainframe Online</div>
+            <div class="win-status-pane">Filing: PENDING</div>
+            <div class="win-status-pane" style="max-width: 55px; text-align: center;">NUM</div>
+            <div class="win-status-pane" style="max-width: 55px; text-align: center;">CAPS</div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MINIGAME 1: DOOM 3D RAYCASTER (DOOM_TAX.EXE)
+         ==================================================================== -->
+    <div id="win-doom" class="win-window hidden" style="top: 20px; left: 100px; width: 680px; height: 505px;">
+        <div class="win-titlebar" style="background: linear-gradient(90deg, #880000, #330000);">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_msdos.png" style="width: 16px; height: 16px; margin-right: 5px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                <span>DOOM_TAX.EXE [3D Tax Records Archive]</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.DoomGame.start()"><u>G</u>ame</span>
+            <span onclick="window.SystemAlert('Heavy-duty 24/6 gauge archive staples loaded.', 'Ammo', 'info')"><u>A</u>mmo</span>
+            <span onclick="window.SystemAlert('DOOM TAX AUDIT - CONTROLS:\n- Arrows / WASD: Walk & Turn\n- Q / E: Strafe (Side step)\n- SPACE or Left Click: Fire Mechanical Stapler\n- M: Toggle Map Radar\n\nMission: Eliminate all 4 cursed Tax Audit Binders lurking in the archive to unlock High Contrast!', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="win-content" style="padding: 0; background: #000000; height: calc(100% - 48px); overflow: hidden; display: flex; flex-direction: column;">
+            <div id="doom-canvas-container" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000;">
+                <canvas id="doom-canvas" width="640" height="400" style="border: 2px solid #555555; cursor: crosshair; max-width: 100%; max-height: calc(100% - 24px); image-rendering: pixelated; image-rendering: crisp-edges;"></canvas>
+                <div style="font-size: 10px; color: #a0a0a0; padding: 4px; text-align: center;">
+                    Arrows / WASD: Walk & Turn | Q / E: Strafe | SPACE or Click: Fire Stapler | M: Map Radar
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MINIGAME 2: RETRO CAR RACER (PANDA_RACE.EXE)
+         ==================================================================== -->
+    <div id="win-racer" class="win-window hidden" style="top: 50px; left: 160px; width: 610px; height: 385px;">
+        <div class="win-titlebar" style="background: linear-gradient(90deg, #0055aa, #0088cc);">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_game.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>PANDA_RACE.EXE - Fiat Panda Getaway from IRS Pursuit</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.RacerGame.start()">New Race</span>
+            <span>Nitro</span>
+            <span>Help</span>
+        </div>
+        <div class="win-content" style="padding: 2px; background: #000000; display: flex; flex-direction: column; align-items: center;">
+            <canvas id="racer-canvas" width="580" height="280" style="border: 2px solid #38bdf8;"></canvas>
+            <div style="font-size: 10px; color: #cbd5e1; padding: 4px; text-align: center;">
+                Left/Right Arrows or A/D: Steer | SPACE: Turbo Nitro Boost
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MINIGAME 3: CAPTCHA 90s RPG BATTLE (win-rpg)
+         ==================================================================== -->
+    <div id="win-rpg" class="win-window hidden" style="top: 60px; left: 180px; width: 520px; height: 390px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_floppy.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Audit Review - 90s Tax Battle</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-content" style="background: #ffffff; padding: 10px; font-family: monospace;">
+            <!-- Box Nemico -->
+            <div style="border: 2px solid #000; padding: 8px; margin-bottom: 12px; background: #f8fafc;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                    <span>SENIOR TAX AUDITOR (Lv. 42)</span>
+                    <span id="rpg-enemy-hp-text">80 / 80</span>
+                </div>
+                <div style="height: 10px; background: #ddd; border: 1px solid #000; margin-top: 4px;">
+                    <div id="rpg-enemy-hp-bar" style="height: 100%; width: 100%; background: #22c55e;"></div>
+                </div>
+            </div>
+
+            <!-- Box Giocatore -->
+            <div style="border: 2px solid #000; padding: 8px; margin-bottom: 12px; background: #eff6ff; margin-left: 40px;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                    <span>TAXPAYER (Lv. 18)</span>
+                    <span id="rpg-player-hp-text">50 / 50</span>
+                </div>
+                <div style="height: 10px; background: #ddd; border: 1px solid #000; margin-top: 4px;">
+                    <div id="rpg-player-hp-bar" style="height: 100%; width: 100%; background: #22c55e;"></div>
+                </div>
+                <div style="font-size: 10px; margin-top: 4px; color: #0284c7;">
+                    MP: <span id="rpg-player-mp-text">30 / 30</span>
+                </div>
+            </div>
+
+            <!-- Box Dialoghi -->
+            <div id="rpg-dialogue" style="border: 2px solid #000; min-height: 52px; padding: 6px; font-size: 11px; background: #ffffea; margin-bottom: 8px;">
+                A wild Senior Tax Auditor appears from the Archive!
+            </div>
+
+            <!-- Menu Comandi Principale -->
+            <div id="rpg-main-menu" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <button type="button" class="win-btn" onclick="window.CaptchaGame.selectAction('FIGHT')">1. FIGHT</button>
+                <button type="button" class="win-btn" onclick="window.CaptchaGame.selectAction('BAG')">2. BAG</button>
+                <button type="button" class="win-btn" onclick="window.CaptchaGame.selectAction('STATUTE')">3. TAX CODE</button>
+                <button type="button" class="win-btn" onclick="window.CaptchaGame.selectAction('RUN')">4. RUN</button>
+            </div>
+
+            <!-- Submenu Mosse / Oggetti -->
+            <div id="rpg-subactions-menu" class="hidden" style="display: flex; flex-direction: column; gap: 4px;"></div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         AUXILIARY APPS: NOTEPAD, MINESWEEPER, PAINT
+         ==================================================================== -->
+    <div id="win-notepad" class="win-window hidden" style="top: 70px; left: 160px; width: 480px; height: 350px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_notepad.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Tax_Notes.txt - Notepad</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Search</span>
+            <span>Help</span>
+        </div>
+        <div class="win-content" style="padding: 0;">
+            <textarea id="notepad-text">CONFIDENTIAL MEMORANDUM - IRS REVENUE SERVICE
+-------------------------------------------------
+1. Taxpayer John Doe claimed $230.50 in medical expenses.
+   The receipt is actually a 2004 bus ticket.
+2. If a flying audit binder appears in the records archive, use the heavy-duty stapler in DOOM_TAX.
+3. If the patrol car pursues you, press SPACEBAR to trigger nitro boost in the Panda.
+4. Remember to clean the CD-ROM tray after coffee delivery.</textarea>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane">Line 6, Col 1</div>
+        </div>
+    </div>
+
+    <div id="win-minesweeper" class="win-window hidden" style="top: 90px; left: 220px; width: 230px; height: 285px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_minesweeper.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Minesweeper - Tax Audit Edition</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.MinesweeperGame.reset()">Game</span>
+            <span>Options</span>
+            <span>Help</span>
+        </div>
+        <div class="win-content" style="padding: 4px; display: flex; justify-content: center;">
+            <div class="minesweeper-box">
+                <div class="minesweeper-header">
+                    <div id="mine-counter" class="mine-counter">010</div>
+                    <button id="mine-face-btn" class="mine-face-btn">:)</button>
+                    <div id="mine-timer" class="mine-counter">000</div>
+                </div>
+                <div id="mine-grid" class="mine-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="win-paint" class="win-window hidden" style="top: 60px; left: 180px; width: 540px; height: 420px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_paint.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>untitled - Paint</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Paint Bitmap Image (*.bmp)\nReady for IRS audit filing.', 'File', 'info')"><u>F</u>ile</span>
+            <span onclick="window.PaintApp.clear()"><u>E</u>dit</span>
+            <span><u>V</u>iew</span>
+            <span onclick="window.PaintApp.clear()"><u>I</u>mage</span>
+            <span><u>C</u>olors</span>
+            <span onclick="window.SystemAlert('Paint for WinTax 98 SE.\nUse tools on the left to draw or stamp official tax forms.', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="paint-body">
+            <div class="paint-work-area">
+                <!-- Left Toolbox -->
+                <div class="paint-toolbox">
+                    <button type="button" class="win-btn paint-tool-btn" data-tool="pencil" title="Pencil (1px)" onclick="window.PaintApp.setTool('pencil')">Pen</button>
+                    <button type="button" class="win-btn paint-tool-btn active" data-tool="brush" title="Brush (4px)" onclick="window.PaintApp.setTool('brush')">Brsh</button>
+                    <button type="button" class="win-btn paint-tool-btn" data-tool="eraser" title="Eraser" onclick="window.PaintApp.setTool('eraser')">Eras</button>
+                    <button type="button" class="win-btn paint-tool-btn" data-tool="bucket" title="Fill with Color" onclick="window.PaintApp.setTool('bucket')">Fill</button>
+                    <button type="button" class="win-btn paint-stamp-btn" style="grid-column: span 2; color: #008800;" title="Apply IRS Approved Stamp" onclick="window.PaintApp.applyStamp('APPROVED')">STAMP OK</button>
+                    <button type="button" class="win-btn paint-stamp-btn" style="grid-column: span 2; color: #cc0000;" title="Apply Audit Rejected Stamp" onclick="window.PaintApp.applyStamp('REJECTED')">REJECTED</button>
+                    <button type="button" class="win-btn paint-stamp-btn" style="grid-column: span 2; color: #7c2d12;" title="Apply Classified Stamp" onclick="window.PaintApp.applyStamp('CLASSIFIED')">TAX SECRET</button>
+                    <button type="button" class="win-btn paint-stamp-btn" style="grid-column: span 2; margin-top: 4px;" title="Clear Canvas" onclick="window.PaintApp.clear()">Clear</button>
+                </div>
+                <!-- Canvas Viewport -->
+                <div class="paint-canvas-viewport">
+                    <canvas id="paint-canvas" width="440" height="270"></canvas>
+                </div>
+            </div>
+            <!-- Bottom Color Palette Bar -->
+            <div class="paint-palette-bar">
+                <div class="paint-color-indicator" title="Current Color">
+                    <div id="paint-color-primary"></div>
+                </div>
+                <div id="paint-palette-grid" class="paint-palette-grid"></div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane" id="paint-status-coords" style="width: 100px;"></div>
+            <div class="win-status-pane">440x270px</div>
+            <div class="win-status-pane">24-bit Bitmap</div>
+        </div>
+    </div>
+
+    <!-- SYSTEM MODAL DIALOG (MSGBOX REPLACING BROWSER ALERT) -->
+    <div id="msgbox-backdrop" class="msgbox-backdrop hidden">
+        <div id="win-msgbox" class="win-window win-msgbox">
+            <div class="win-titlebar">
+                <div class="win-titlebar-left">
+                    <img id="msgbox-titlebar-icon" src="assets/icon_warning.png" style="width:14px; height:14px; margin-right:4px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                    <span id="msgbox-title">WinTax 98 - Warning</span>
+                </div>
+                <button type="button" class="win-title-btn win-title-btn-close" id="msgbox-btn-x" onclick="window.CloseSystemMsgBox()">X</button>
+            </div>
+            <div class="win-msgbox-content">
+                <div class="win-msgbox-body">
+                    <img id="msgbox-icon" class="win-msgbox-icon" src="assets/icon_warning.png" alt="">
+                    <div id="msgbox-text" class="win-msgbox-text">System Notification</div>
+                </div>
+                <div id="msgbox-actions" class="win-msgbox-actions">
+                    <button type="button" class="win-btn win-msgbox-btn" id="msgbox-btn-ok" onclick="window.CloseSystemMsgBox()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK MANAGER (taskmgr.exe) -->
+    <div id="win-taskmgr" class="win-window hidden" style="top: 50px; left: 160px; width: 440px; height: 380px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_taskmgr.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>WinTax 98 Task Manager</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Task Manager for WinTax 98 Second Edition.', 'About', 'info')"><u>F</u>ile</span>
+            <span onclick="window.TaskMgrApp.refreshAppsList()"><u>O</u>ptions</span>
+            <span onclick="window.SystemAlert('Select an application and click End Task to terminate it.', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="win-tabs-bar">
+            <div class="win-tab active" data-tab="apps">Applications</div>
+            <div class="win-tab" data-tab="proc">Processes</div>
+            <div class="win-tab" data-tab="perf">Performance</div>
+        </div>
+        <div class="win-content" style="padding: 8px; display: flex; flex-direction: column; flex: 1;">
+            <!-- Tab 1: Applications -->
+            <div id="taskmgr-tab-apps" class="taskmgr-tab-page" style="display:flex; flex-direction:column; flex:1; gap:8px;">
+                <div id="taskmgr-apps-list" class="taskmgr-list-box"></div>
+                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                    <button type="button" class="win-btn" id="taskmgr-kill-app-btn">End Task</button>
+                    <button type="button" class="win-btn" onclick="window.TaskMgrApp.refreshAppsList()">Refresh</button>
+                    <button type="button" class="win-btn" id="taskmgr-new-app-btn">New Task...</button>
+                </div>
+            </div>
+            <!-- Tab 2: Processes -->
+            <div id="taskmgr-tab-proc" class="taskmgr-tab-page hidden" style="display:flex; flex-direction:column; flex:1; gap:8px;">
+                <div class="taskmgr-table-box">
+                    <table class="taskmgr-table">
+                        <thead>
+                            <tr>
+                                <th>Image Name</th>
+                                <th style="text-align: right;">PID</th>
+                                <th style="text-align: right;">CPU</th>
+                                <th style="text-align: right;">Mem Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="taskmgr-proc-tbody"></tbody>
+                    </table>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                    <button type="button" class="win-btn" id="taskmgr-kill-proc-btn">End Process</button>
+                </div>
+            </div>
+            <!-- Tab 3: Performance -->
+            <div id="taskmgr-tab-perf" class="taskmgr-tab-page hidden" style="display:flex; flex-direction:column; flex:1; gap:8px;">
+                <fieldset class="win-fieldset" style="margin:0;">
+                    <legend class="win-legend">CPU Usage History (Pentium 133 MHz)</legend>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                        <span style="font-size: 11px;">Tax Calculation Load:</span>
+                        <strong id="taskmgr-cpu-val" style="font-size: 12px; color: #008000; font-family: monospace;">35%</strong>
+                    </div>
+                    <canvas id="taskmgr-perf-canvas" width="400" height="90" style="display: block; width: 100%; border: 2px inset #ffffff; background: #001a00;"></canvas>
+                </fieldset>
+                <fieldset class="win-fieldset" style="margin:0;">
+                    <legend class="win-legend">Physical Memory (RAM)</legend>
+                    <div style="font-size: 11px; line-height: 1.5; font-family: Tahoma, sans-serif;">
+                        Total RAM: 16,384 KB<br>
+                        Available for Audit: 1,024 KB<br>
+                        Form Buffer Cache: 6,812 KB
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane">Processes: 9</div>
+            <div class="win-status-pane">Memory: 16 MB / 16 MB</div>
+        </div>
+    </div>
+
+    <!-- CONTROL PANEL (control.exe) -->
+    <div id="win-control" class="win-window hidden" style="top: 80px; left: 140px; width: 480px; height: 350px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_control_panel.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Control Panel</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Control Panel for WinTax 98', 'File', 'info')"><u>F</u>ile</span>
+            <span><u>E</u>dit</span>
+            <span><u>V</u>iew</span>
+            <span onclick="window.SystemAlert('Configure hardware peripherals and revenue parameters.', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="win-content" style="padding: 12px; overflow-y: auto; background: #ffffff;">
+            <div class="control-panel-grid">
+                <div class="control-item" onclick="window.WinMgr.openApp('display-props')">
+                    <img src="assets/icon_gears.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Display</span>
+                </div>
+                <div class="control-item" onclick="window.WinMgr.openApp('system-props')">
+                    <img src="assets/icon_computer.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>System</span>
+                </div>
+                <div class="control-item" onclick="window.AudioMgr.playSfx('tada'); window.SystemAlert('Sound Blaster 16 ISA audio card tested successfully.\nDMA 1, IRQ 5, I/O 220h.', 'Sounds and Multimedia', 'info');">
+                    <img src="assets/icon_sound.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Sounds & Audio</span>
+                </div>
+                <div class="control-item" onclick="window.SystemAlert('IRS Electronic Filing Modem Protocol v4.2 connected at 33,600 bps on COM2.', 'Tax Network', 'info')">
+                    <img src="assets/icon_warning.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Tax Network</span>
+                </div>
+                <div class="control-item" onclick="window.SystemAlert('System Date and Time synchronized with Treasury Atomic Clock.', 'Date/Time', 'info')">
+                    <img src="assets/icon_info.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Date/Time</span>
+                </div>
+                <div class="control-item" onclick="window.SystemAlert('ERROR: Removing tax compliance modules or IRS forms is strictly prohibited under Federal Code §7201.', 'Add/Remove Programs', 'error')">
+                    <img src="assets/icon_cd.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Add/Remove Programs</span>
+                </div>
+                <div class="control-item" onclick="window.SystemAlert('Two-button serial mouse with heavy steel tracking ball.', 'Mouse', 'info')">
+                    <img src="assets/icon_game.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Mouse</span>
+                </div>
+                <div class="control-item" onclick="window.WinMgr.openApp('taskmgr')">
+                    <img src="assets/icon_taskmgr.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Task Manager</span>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane">8 object(s)</div>
+        </div>
+    </div>
+
+    <!-- DISPLAY PROPERTIES (desk.cpl) -->
+    <div id="win-display-props" class="win-window hidden" style="top: 70px; left: 200px; width: 380px; height: 350px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_gears.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Display Properties</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-tabs-bar">
+            <div class="win-tab active">Background</div>
+            <div class="win-tab" onclick="window.SystemAlert('Fixed CRT Resolution: 800x600 pixels at 256 colors.', 'Settings', 'info')">Settings</div>
+        </div>
+        <div class="win-content" style="padding: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="background: #ffffff; border: 2px inset #ffffff; padding: 12px; text-align: center;">
+                <div style="width: 140px; height: 95px; margin: 0 auto; background: #008080; border: 4px solid #c0c0c0; border-radius: 4px; box-shadow: inset 1px 1px 0 #000, 2px 2px 0 #000; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 10px; font-weight: bold;">
+                    WinTax 98
+                </div>
+                <div style="font-size: 11px; margin-top: 6px;">Plug and Play Monitor on S3 Trio64V+</div>
+            </div>
+            <fieldset class="win-fieldset" style="margin: 0;">
+                <legend class="win-legend">Desktop Color Scheme</legend>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+                    <button type="button" class="win-btn" onclick="window.DisplayPropsApp.applyColor('#008080')">Classic Teal 98</button>
+                    <button type="button" class="win-btn" onclick="window.DisplayPropsApp.applyColor('#000080')">Midnight Navy Blue</button>
+                    <button type="button" class="win-btn" onclick="window.DisplayPropsApp.applyColor('#800000')">Audit Burgundy</button>
+                    <button type="button" class="win-btn" onclick="window.DisplayPropsApp.applyColor('#006633')">IRS Forest Green</button>
+                    <button type="button" class="win-btn" onclick="window.DisplayPropsApp.applyColor('#404040')">Bureaucracy Slate</button>
+                    <button type="button" class="win-btn" onclick="window.DisplayPropsApp.applyColor('#2e1065')">Midnight Purple</button>
+                </div>
+            </fieldset>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px;">
+                <button type="button" class="win-btn" onclick="window.WinMgr.close('win-display-props')">OK</button>
+                <button type="button" class="win-btn" onclick="window.WinMgr.close('win-display-props')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SYSTEM PROPERTIES (sysdm.cpl) -->
+    <div id="win-system-props" class="win-window hidden" style="top: 75px; left: 190px; width: 400px; height: 370px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_computer.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>System Properties</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-tabs-bar">
+            <div class="win-tab active">General</div>
+            <div class="win-tab" onclick="window.SystemAlert('All tax accounting peripherals operating normally.', 'Device Manager', 'info')">Device Manager</div>
+            <div class="win-tab" onclick="window.SystemAlert('Profile: Senior Audit Examiner.', 'Hardware Profiles', 'info')">Hardware Profiles</div>
+        </div>
+        <div class="win-content" style="padding: 14px; font-size: 11px; line-height: 1.5;">
+            <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px;">
+                <img src="assets/icon_computer.png" width="48" height="48" style="image-rendering: pixelated; flex-shrink: 0;" alt="">
+                <div>
+                    <strong>System:</strong><br>
+                    WinTax 98 SE<br>
+                    Version 4.10.1998 Second Edition<br>
+                    Revenue Service Pack 3.1
+                </div>
+            </div>
+            <div style="border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 10px 0;"></div>
+            <div style="margin-bottom: 12px;">
+                <strong>Registered to:</strong><br>
+                Special Agent Frank Drebin<br>
+                IRS Criminal Investigation Bureau<br>
+                Product ID: 1998-WINTAX-IRS-0042
+            </div>
+            <div style="border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 10px 0;"></div>
+            <div>
+                <strong>Computer:</strong><br>
+                Genuine Intel(R) Pentium(R) Processor 133 MHz<br>
+                16.0 MB EDO DRAM<br>
+                Quantum Fireball 1.2 GB FAT32 Hard Drive
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
+                <button type="button" class="win-btn" onclick="window.WinMgr.close('win-system-props')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALCULATOR (calc.exe) -->
+    <div id="win-calc" class="win-window hidden" style="top: 100px; left: 240px; width: 250px; height: 280px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_calculator.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Calculator</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Edit: Copy / Paste values', 'Edit', 'info')"><u>E</u>dit</span>
+            <span onclick="window.SystemAlert('Standard / Revenue Audit Mode 1998', 'View', 'info')"><u>V</u>iew</span>
+            <span onclick="window.SystemAlert('WinTax 98 Calculator with VAT and Withholding shortcuts.', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="win-content" style="padding: 6px;">
+            <input type="text" id="calc-display" class="win-input" style="text-align: right; font-size: 16px; font-family: monospace; font-weight: bold; background: #ffffff; color: #000; margin-bottom: 6px; width: 100%; box-sizing: border-box; height: 28px;" value="0" readonly>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 4px;">
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-size:10px;" onclick="window.CalcApp.backspace()">Back</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-size:10px;" onclick="window.CalcApp.clearEntry()">CE</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-size:10px;" onclick="window.CalcApp.clear()">C</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0369a1; font-size:10px;" onclick="window.CalcApp.sqrt()">sqrt</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 4px;">
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(7)">7</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(8)">8</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(9)">9</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-weight: bold;" onclick="window.CalcApp.performOperation('/')">/</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 4px;">
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(4)">4</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(5)">5</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(6)">6</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-weight: bold;" onclick="window.CalcApp.performOperation('*')">*</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 4px;">
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(1)">1</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(2)">2</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(3)">3</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-weight: bold;" onclick="window.CalcApp.performOperation('-')">-</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 4px;">
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDigit(0)">0</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.toggleSign()">+/-</button>
+                <button type="button" class="win-btn calc-btn" style="color: #0000cc; font-weight: bold;" onclick="window.CalcApp.inputDecimal()">.</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-weight: bold;" onclick="window.CalcApp.performOperation('+')">+</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px;">
+                <button type="button" class="win-btn calc-btn" style="color: #047857; font-size:10px; font-weight:bold;" onclick="window.CalcApp.applyIVA()">+22% VAT</button>
+                <button type="button" class="win-btn calc-btn" style="color: #6b21a8; font-size:10px; font-weight:bold;" onclick="window.CalcApp.applyRitenuta()">-20% W/H</button>
+                <button type="button" class="win-btn calc-btn" style="color: #b91c1c; font-weight: bold;" onclick="window.CalcApp.equals()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOS PROMPT (command.com) -->
+    <div id="win-dos" class="win-window hidden" style="top: 70px; left: 150px; width: 620px; height: 380px;">
+        <div class="win-titlebar" style="background: #000000; color: #ffffff;">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_msdos.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>WinTax DOS Prompt</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-content" style="background: #000000; color: #ffffff; padding: 6px; font-family: monospace; font-size: 12px; display: flex; flex-direction: column; flex: 1; overflow-y: auto;">
+            <div id="dos-output" style="white-space: pre-wrap; line-height: 1.3;">
+WinTax 98 [Version 4.10.1998]
+(C) Copyright WinTax Corp 1981-1998. All rights reserved.
+
+Type "HELP" for the list of available tax and system commands.
+            </div>
+            <div style="display: flex; align-items: center; margin-top: 4px;">
+                <span style="color: #00ff00; margin-right: 4px;">C:\TAX_DOCUMENTS&gt;</span>
+                <input type="text" id="dos-input" style="flex: 1; background: transparent; border: none; outline: none; color: #ffffff; font-family: monospace; font-size: 12px; caret-color: #00ff00;" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- FILE EXPLORER (explorer.exe) -->
+    <div id="win-explorer" class="win-window hidden" style="top: 60px; left: 130px; width: 560px; height: 380px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_folder.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Exploring - C:\TAX_DOCUMENTS</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Explorer File Operations', 'File', 'info')"><u>F</u>ile</span>
+            <span><u>E</u>dit</span>
+            <span><u>V</u>iew</span>
+            <span><u>T</u>ools</span>
+            <span onclick="window.SystemAlert('File Explorer for WinTax 98. FAT32 File System.', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div style="padding: 4px 6px; background: var(--win-bg); border-bottom: 1px solid #808080; display: flex; align-items: center; gap: 6px; font-size: 11px;">
+            <span>Address:</span>
+            <input type="text" class="win-input" value="C:\TAX_DOCUMENTS" style="flex: 1; font-family: monospace;" readonly>
+        </div>
+        <div class="win-content" style="display: flex; flex: 1; padding: 0; background: #ffffff;">
+            <!-- Tree View Left -->
+            <div style="width: 160px; border-right: 2px inset #ffffff; background: #ffffff; padding: 6px; font-size: 11px; overflow-y: auto;">
+                <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
+                    <img src="assets/icon_computer.png" width="16" height="16" style="image-rendering: pixelated;">
+                    <strong>My Computer</strong>
+                </div>
+                <div style="margin-left: 12px; display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
+                    <img src="assets/icon_floppy.png" width="16" height="16" style="image-rendering: pixelated;">
+                    <span>3½ Floppy (A:)</span>
+                </div>
+                <div style="margin-left: 12px; display: flex; align-items: center; gap: 4px; margin-bottom: 4px; background: #0a246a; color: #fff; padding: 1px 3px;">
+                    <img src="assets/icon_hard_disk.png" width="16" height="16" style="image-rendering: pixelated;">
+                    <span>Hard Disk (C:)</span>
+                </div>
+                <div style="margin-left: 24px; display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
+                    <img src="assets/icon_folder.png" width="16" height="16" style="image-rendering: pixelated;">
+                    <span>TAX_DOCS</span>
+                </div>
+                <div style="margin-left: 12px; display: flex; align-items: center; gap: 4px;">
+                    <img src="assets/icon_cd.png" width="16" height="16" style="image-rendering: pixelated;">
+                    <span>CD-ROM (D:)</span>
+                </div>
+            </div>
+            <!-- File List Right -->
+            <div style="flex: 1; padding: 8px; overflow-y: auto; background: #ffffff;">
+                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('unico')" title="Double-click to open">
+                    <img src="assets/icon_computer.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Form1040_2024.ade</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('doom')" title="Double-click to launch">
+                    <img src="assets/icon_msdos.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>DOOM_TAX.EXE</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('panda')" title="Double-click to launch">
+                    <img src="assets/icon_game.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>PANDA_RACE.EXE</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('note')" title="Double-click to read">
+                    <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Tax_Notes.txt</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('paint')" title="Double-click to open">
+                    <img src="assets/icon_paint.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Audit_Stamp.bmp</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('doc')" title="Double-click to inspect">
+                    <img src="assets/icon_warning.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Tax_Levy_Notice.doc</span>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane">6 object(s)</div>
+            <div class="win-status-pane">2.15 MB</div>
+        </div>
+    </div>
+
+    <!-- RUN DIALOG (run.exe) -->
+    <div id="win-run" class="win-window hidden" style="top: 140px; left: 220px; width: 380px; height: 180px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_windows.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Run</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-content" style="padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                <img src="assets/icon_windows.png" width="32" height="32" style="image-rendering: pixelated; flex-shrink: 0;" alt="">
+                <div style="font-size: 11px; line-height: 1.4;">
+                    Type the name of a program, folder, document, or Internet resource, and WinTax will open it for you.
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <label for="run-input" style="font-size: 11px;"><u>O</u>pen:</label>
+                <input type="text" id="run-input" class="win-input" style="flex: 1;" placeholder="calc, cmd, taskmgr, control, explorer..." onkeydown="if (event.key==='Enter') document.getElementById('run-btn-ok').click();">
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px;">
+                <button type="button" class="win-btn" id="run-btn-ok" onclick="
+                    const v = (document.getElementById('run-input').value || '').trim().toLowerCase();
+                    window.WinMgr.close('win-run');
+                    if (v === 'calc') window.WinMgr.openApp('calc');
+                    else if (v === 'cmd' || v === 'command' || v === 'dos') window.WinMgr.openApp('cmd');
+                    else if (v === 'taskmgr') window.WinMgr.openApp('taskmgr');
+                    else if (v === 'control') window.WinMgr.openApp('control');
+                    else if (v === 'explorer') window.WinMgr.openApp('explorer');
+                    else if (v === 'notepad') window.WinMgr.openApp('notepad');
+                    else if (v === 'paint' || v === 'pbrush') window.WinMgr.openApp('paint');
+                    else if (v === 'doom') window.WinMgr.openApp('doom');
+                    else if (v === 'racer' || v === 'panda') window.WinMgr.openApp('racer');
+                    else window.SystemAlert('Cannot find the file \'' + v + '\' (or one of its components).\nMake sure the path and filename are correct.', 'Run - Error', 'error');
+                ">OK</button>
+                <button type="button" class="win-btn" onclick="window.WinMgr.close('win-run')">Cancel</button>
+                <button type="button" class="win-btn" onclick="window.WinMgr.openApp('explorer')"><u>B</u>rowse...</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVA COOKIE POPUP (TRIGGER PANDA RACE) -->
+    <div id="annoying-cookie-popup" class="win-popup-dialog">
+        <div class="win-titlebar" style="background: linear-gradient(90deg, #708090, #a0b0c0);">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_warning.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Java(TM) System Warning</span>
+            </div>
+            <button id="popup-close-trigger" class="win-title-btn" title="Dismiss notification">X</button>
+        </div>
+        <div class="win-popup-body">
+            <img src="assets/icon_warning.png" width="32" height="32" style="flex-shrink: 0; image-rendering: pixelated; margin-right: 8px;" alt="Warning">
+            <div>
+                <strong>Warning:</strong> Session tracking cookies will expire shortly.
+                <div style="font-size: 10px; color: #444444; margin-top: 4px;">
+                    Click the [X] button to certify dismissal of this notification.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START MENU WINTAX 98 -->
+    <div id="start-menu" class="hidden">
+        <div class="start-sidebar">
+            <span class="start-sidebar-text">WinTax 98</span>
+        </div>
+        <div class="start-items-list">
+            <div class="start-item" onclick="window.WinMgr.openApp('entratel')">
+                <img src="assets/icon_computer.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                <strong>TaxReturn 4.2</strong>
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('calc')">
+                <img src="assets/icon_calculator.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Calculator
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('cmd')">
+                <img src="assets/icon_msdos.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                DOS Prompt
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('explorer')">
+                <img src="assets/icon_folder.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                File Explorer
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('doom')">
+                <img src="assets/icon_msdos.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                DOOM Tax 3D
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('racer')">
+                <img src="assets/icon_game.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Panda Race (Getaway)
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('minesweeper')">
+                <img src="assets/icon_minesweeper.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Minesweeper
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('notepad')">
+                <img src="assets/icon_notepad.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Notepad
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('paint')">
+                <img src="assets/icon_paint.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Paint
+            </div>
+            <div class="start-divider"></div>
+            <div class="start-item" onclick="window.WinMgr.openApp('control')">
+                <img src="assets/icon_control_panel.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Control Panel
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('taskmgr')">
+                <img src="assets/icon_taskmgr.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Task Manager
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('run')">
+                <img src="assets/icon_windows.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Run...
+            </div>
+            <div class="start-divider"></div>
+            <div class="start-item" onclick="window.SystemAlert('It is now safe to turn off your computer.\nYour tax liabilities remain recorded in the central mainframe.', 'Shut Down WinTax 98', 'info')">
+                <img src="assets/icon_windows.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Shut Down...
+            </div>
+        </div>
+    </div>
+
+    <!-- TASKBAR -->
+    <div id="taskbar">
+        <div class="taskbar-left">
+            <button id="start-btn" class="win-btn">
+                <img src="assets/icon_windows.png" width="16" height="16" style="margin-right: 4px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                <span>Start</span>
+            </button>
+            <div id="taskbar-windows"></div>
+        </div>
+
+        <div class="system-tray">
+            <span class="tray-icon" title="Volume Control" onclick="window.AudioMgr.isMuted = !window.AudioMgr.isMuted; window.SystemAlert(window.AudioMgr.isMuted ? 'Audio Muted' : 'Audio Enabled', 'Volume Control', 'info');">
+                <img src="assets/icon_sound.png" width="16" height="16" style="vertical-align: middle; image-rendering: pixelated;" alt="Volume">
+            </span>
+            <span id="system-clock">12:00:00</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="audio.js"></script>
+    <script src="doom.js"></script>
+    <script src="racer.js"></script>
+    <script src="captcha_rpg.js"></script>
+    <script src="minesweeper.js"></script>
+    <script src="paint.js"></script>
+    <script src="system_apps.js"></script>
+    <script src="desktop.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
