@@ -262,6 +262,30 @@ class SoundEngine {
         }
     }
 
+    playStartup() {
+        try {
+            if (!this.ctx || this.isMuted) return;
+            this.resume();
+            const t = this.ctx.currentTime;
+            // Windows 98 inspired harmonic ambient chord chime
+            const notes = [261.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
+            notes.forEach((freq, i) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = i % 2 === 0 ? 'sine' : 'triangle';
+                osc.frequency.setValueAtTime(freq, t + i * 0.08);
+                gain.gain.setValueAtTime(0.15, t + i * 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.08 + 1.6);
+                osc.connect(gain);
+                gain.connect(this.masterGain || this.ctx.destination);
+                osc.start(t + i * 0.08);
+                osc.stop(t + i * 0.08 + 1.6);
+            });
+        } catch (e) {
+            console.warn("Error playing startup chime:", e);
+        }
+    }
+
     stopMusic() {
         if (this.currentTrackTimeout) {
             clearTimeout(this.currentTrackTimeout);

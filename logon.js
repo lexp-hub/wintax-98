@@ -56,10 +56,24 @@
         }
 
         setupListeners() {
-            // Main login button
-            const loginBtn = document.getElementById('access-btn-login');
-            if (loginBtn) {
-                loginBtn.addEventListener('click', () => this.handleLoginClick());
+            // Main login button (OK)
+            const okBtn = document.getElementById('logon-btn-ok') || document.getElementById('access-btn-login');
+            if (okBtn) {
+                okBtn.addEventListener('click', () => this.handleLoginClick());
+            }
+
+            // Cancel button (Windows 98 cancel: enters session directly)
+            const cancelBtn = document.getElementById('logon-btn-cancel');
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', () => this.performLogin(true));
+            }
+
+            // Help button
+            const helpBtn = document.getElementById('logon-btn-help');
+            if (helpBtn) {
+                helpBtn.addEventListener('click', () => {
+                    alert("Password Hint: Arthur always uses 'coffee1998' because coffee is the only thing keeping him awake.");
+                });
             }
 
             // Password Enter key
@@ -153,54 +167,66 @@
             this.performLogin();
         }
 
-        performLogin() {
-            if (this.isLoggedIn) return;
+        performLogin(isGuest = false) {
             this.isLoggedIn = true;
 
-            // Unlock and play startup audio chime
-            if (window.AudioMgr) {
-                window.AudioMgr.resume();
-                window.AudioMgr.playStartup();
-            }
-
-            // Hide access menu overlay with retro fade
+            // Immediately hide access menu overlay
             if (this.overlay) {
-                this.overlay.style.transition = 'opacity 0.4s ease';
-                this.overlay.style.opacity = '0';
-                setTimeout(() => {
-                    this.overlay.classList.add('hidden');
-                }, 400);
+                this.overlay.style.display = 'none';
+                this.overlay.classList.add('hidden');
             }
 
-            // Complete first quest!
-            if (window.QuestEngine) {
-                window.QuestEngine.complete('logon');
+            // Unlock and play startup audio chime safely
+            try {
+                if (window.AudioMgr) {
+                    window.AudioMgr.resume();
+                    if (typeof window.AudioMgr.playStartup === 'function') {
+                        window.AudioMgr.playStartup();
+                    } else if (typeof window.AudioMgr.playSfx === 'function') {
+                        window.AudioMgr.playSfx('tada');
+                    }
+                }
+            } catch (err) {
+                console.warn("Audio chime error:", err);
+            }
+
+            // Complete first quest safely
+            try {
+                if (window.QuestEngine) {
+                    window.QuestEngine.complete('logon');
+                }
+            } catch (err) {
+                console.warn("Quest complete error:", err);
             }
 
             // Narrative briefing alert
             setTimeout(() => {
-                if (window.SystemAlert) {
-                    window.SystemAlert(
-                        "SHIFT COMMENCED: 4:15 PM\n\n" +
-                        "Employee: Arthur P. Pendelton (Desk 14-B)\n" +
-                        "Status: 45 minutes remaining until the 5:00 PM filing deadline!\n\n" +
-                        "Director Vance has left an urgent warning memo in C:\\MEMOS\\.\n" +
-                        "Check your Workday Objectives on the Taskbar to survive the afternoon.",
-                        "WinTax 98 - Welcome Arthur Pendelton",
-                        "info"
-                    );
+                try {
+                    if (window.SystemAlert) {
+                        window.SystemAlert(
+                            "SHIFT COMMENCED: 4:15 PM\n\n" +
+                            "Employee: Arthur P. Pendelton (Desk 14-B)\n" +
+                            "Status: 45 minutes remaining until the 5:00 PM filing deadline!\n\n" +
+                            "Director Vance has left an urgent warning memo in C:\\MEMOS\\.\n" +
+                            "Check your Workday Objectives on the Taskbar to survive the afternoon.",
+                            "WinTax 98 - Welcome Arthur Pendelton",
+                            "info"
+                        );
+                    }
+                } catch (e) {
+                    console.warn(e);
                 }
-            }, 600);
+            }, 500);
         }
 
         showAccessMenu() {
             this.isLoggedIn = false;
             if (this.overlay) {
+                this.overlay.style.display = 'flex';
                 this.overlay.classList.remove('hidden');
-                this.overlay.style.transition = 'opacity 0.3s ease';
                 this.overlay.style.opacity = '1';
             }
-            if (window.AudioMgr) {
+            if (window.AudioMgr && window.AudioMgr.playSfx) {
                 window.AudioMgr.playSfx('select');
             }
         }

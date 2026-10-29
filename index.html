@@ -83,10 +83,9 @@
                             </div>
                         </div>
                         <div style="display: flex; gap: 6px; margin-top: 10px; justify-content: flex-end;">
-                            <button type="button" class="win-btn" onclick="alert('Password Hint: Arthur always uses \'coffee1998\' because coffee is the only thing keeping him awake.')" style="font-size: 11px;"><u>H</u>int</button>
-                            <button type="button" id="access-btn-login" class="win-btn" style="font-weight: bold; min-width: 130px; height: 26px; font-size: 11px;">
-                                Start Shift &rarr;
-                            </button>
+                            <button type="button" id="logon-btn-ok" class="win-btn" onclick="window.LogonMgr.handleLoginClick()" style="font-weight: bold; min-width: 75px; height: 26px; font-size: 11px;">OK</button>
+                            <button type="button" id="logon-btn-cancel" class="win-btn" onclick="window.LogonMgr.performLogin(true)" style="min-width: 75px; height: 26px; font-size: 11px;">Cancel</button>
+                            <button type="button" id="logon-btn-help" class="win-btn" onclick="alert('Password Hint: Arthur always uses \'coffee1998\' because coffee is the only thing keeping him awake.')" style="min-width: 65px; height: 26px; font-size: 11px;"><u>H</u>elp</button>
                         </div>
                     </div>
 
