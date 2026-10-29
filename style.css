@@ -1122,7 +1122,7 @@ body.dark-mode .win-captcha-box { background: #1e222b; }
 }
 
 /* ==========================================================================
-   WINDOWS 98 LOGON SCREEN OVERLAY
+   WINDOWS 98 WORKSTATION ACCESS MENU SCREEN
    ========================================================================== */
 #win-logon-overlay {
     position: fixed;
@@ -1135,17 +1135,190 @@ body.dark-mode .win-captcha-box { background: #1e222b; }
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 #win-logon-overlay.hidden {
     display: none !important;
 }
 
-.logon-dialog {
-    width: 440px;
+.access-menu-window {
+    width: 740px;
+    max-width: 95vw;
+    max-height: 94vh;
     background: var(--win-bg);
     border: 2px outset #ffffff;
-    box-shadow: 2px 2px 0 #000000;
+    box-shadow: 3px 3px 0 #000000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.access-menu-banner {
+    padding: 10px 14px;
+    background: linear-gradient(180deg, #e4e2db 0%, #d4d0c8 100%);
+    border-bottom: 2px groove #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.access-menu-body {
+    display: flex;
+    gap: 14px;
+    padding: 14px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.access-badge-col {
+    width: 230px;
+    flex-shrink: 0;
+}
+
+.access-employee-card {
+    background: #ffffff;
+    border: 2px inset #ffffff;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+}
+
+.access-badge-header {
+    background: #000080;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.access-badge-photo-wrap {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 8px;
+    background: #c0c0c0;
+    border: 2px inset #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.access-badge-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.access-badge-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000080;
+    margin-bottom: 2px;
+}
+
+.access-badge-role {
+    font-size: 11px;
+    color: #4b5563;
+    font-style: italic;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #d1d5db;
+    padding-bottom: 6px;
+}
+
+.access-badge-details {
+    font-size: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: #333333;
+    background: #f8fafc;
+    padding: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.access-options-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.access-menu-panel {
+    background: #ffffff;
+    border: 2px inset #ffffff;
+    padding: 10px;
+}
+
+.access-quick-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.access-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: var(--win-bg);
+    border: 2px outset #ffffff;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    color: #000000;
+}
+
+.access-menu-btn:hover {
+    background: #e2e8f0;
+}
+
+.access-menu-btn:active {
+    border-style: inset;
+    background: #cbd5e1;
+}
+
+/* Submodal popup inside access menu */
+.access-submodal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    max-width: 90%;
+    background: var(--win-bg);
+    border: 2px outset #ffffff;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+    z-index: 100;
+}
+
+.profile-card-option {
+    border: 1px solid #c0c0c0;
+    background: #ffffff;
+    padding: 8px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-card-option:hover {
+    background: #e0f2fe;
+    border-color: #0284c7;
+}
+
+.profile-card-option.active {
+    background: #eff6ff;
+    border: 2px solid #000080;
 }
 
 /* Tree view styling */

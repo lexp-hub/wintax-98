@@ -11,40 +11,192 @@
     <!-- ====================================================================
          WINTAX 98 LOGON OVERLAY
          ==================================================================== -->
+    <!-- ====================================================================
+         WINTAX 98 WORKSTATION ACCESS MENU SCREEN
+         ==================================================================== -->
     <div id="win-logon-overlay">
-        <div class="logon-dialog win-window active">
+        <div class="access-menu-window win-window active">
+            <!-- Titlebar -->
             <div class="win-titlebar">
                 <div class="win-titlebar-left">
-                    <img src="assets/icon_windows.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
-                    <span>Log On to WinTax 98</span>
+                    <img src="assets/icon_windows.png" style="width:16px; height:16px; margin-right:6px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                    <span>WinTax 98 - State Revenue Terminal & Access Gateway</span>
+                </div>
+                <div style="font-size: 10px; color: #a6caf0; font-family: monospace;">[NET: 10Base-T ONLINE]</div>
+            </div>
+
+            <!-- Header Banner -->
+            <div class="access-menu-banner">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/icon_computer.png" width="36" height="36" style="image-rendering: pixelated;" alt="">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #000080; letter-spacing: 0.5px;">DEPARTMENT OF REVENUE & TAXATION</div>
+                        <div style="font-size: 11px; color: #444;">Internal Mainframe Terminal • Workstation 14-B • WinTax 98 SE</div>
+                    </div>
+                </div>
+                <div style="font-size: 11px; text-align: right; background: #ffffd0; border: 1px solid #d4c000; padding: 4px 8px;">
+                    <span style="font-weight: bold; color: #b91c1c;">SHIFT DEADLINE:</span> 5:00 PM Sharp<br>
+                    <span style="color: #444;">Shift Commenced: 4:15 PM</span>
                 </div>
             </div>
-            <div class="win-content" style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
-                <div style="display: flex; gap: 14px; align-items: flex-start;">
-                    <img src="assets/icon_windows.png" width="48" height="48" style="image-rendering: pixelated; flex-shrink: 0;" alt="">
-                    <div style="font-size: 11px; line-height: 1.4;">
-                        Type a user name and password to log on to the <strong>IRS Internal Tax Processing Network</strong>.
+
+            <!-- Main Content Area: 2 Columns -->
+            <div class="access-menu-body">
+                <!-- Left Column: Employee ID Badge -->
+                <div class="access-badge-col">
+                    <div class="access-employee-card">
+                        <div class="access-badge-header">OFFICIAL EMPLOYEE BADGE</div>
+                        <div class="access-badge-photo-wrap">
+                            <img id="access-user-photo" src="assets/face_normal.png" width="80" height="80" style="image-rendering: pixelated;" alt="Arthur Pendelton">
+                        </div>
+                        <div id="access-user-name" class="access-badge-name">Arthur P. Pendelton</div>
+                        <div id="access-user-role" class="access-badge-role">Senior Tax Examiner (Grade 3)</div>
+                        <div id="access-badge-details" class="access-badge-details">
+                            <div><strong>Badge ID:</strong> #IRS-8841-B</div>
+                            <div><strong>Desk:</strong> Desk 14-B (West Annex)</div>
+                            <div><strong>Clearance:</strong> Sub-Audit Class B</div>
+                            <div><strong>Status:</strong> Active Shift • 45m to 5:00 PM</div>
+                        </div>
                     </div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 20px;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <label style="width: 80px; font-weight: bold; font-size: 11px;"><u>U</u>ser name:</label>
-                        <input type="text" id="logon-input-user" class="win-input" value="Arthur P. Pendelton" style="flex: 1;" readonly>
+
+                <!-- Right Column: Interactive Access Menu Options -->
+                <div class="access-options-col">
+                    <div style="font-size: 12px; font-weight: bold; color: #0a246a;">
+                        Select Workstation Access Action:
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <label for="logon-input-password" style="width: 80px; font-weight: bold; font-size: 11px;"><u>P</u>assword:</label>
-                        <input type="password" id="logon-input-password" class="win-input" value="coffee1998" style="flex: 1;" autofocus>
+
+                    <!-- 1. Authentication Panel -->
+                    <div class="access-menu-panel">
+                        <div style="font-weight: bold; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; color: #000080;">
+                            <img src="assets/icon_windows.png" width="16" height="16" style="image-rendering: pixelated;" alt="">
+                            <span>Log On to Active Session</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label style="width: 75px; font-weight: bold;">User:</label>
+                                <input type="text" id="access-input-user" class="win-input" value="Arthur P. Pendelton" readonly style="flex: 1;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <label for="access-input-password" style="width: 75px; font-weight: bold;">Password:</label>
+                                <input type="password" id="access-input-password" class="win-input" value="coffee1998" style="flex: 1;" autofocus>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-top: 10px; justify-content: flex-end;">
+                            <button type="button" class="win-btn" onclick="alert('Password Hint: Arthur always uses \'coffee1998\' because coffee is the only thing keeping him awake.')" style="font-size: 11px;"><u>H</u>int</button>
+                            <button type="button" id="access-btn-login" class="win-btn" style="font-weight: bold; min-width: 130px; height: 26px; font-size: 11px;">
+                                Start Shift &rarr;
+                            </button>
+                        </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <label style="width: 80px; font-size: 11px;">Domain:</label>
-                        <input type="text" class="win-input" value="REVENUE-DEPT-14" style="flex: 1;" readonly>
+
+                    <!-- 2. Action Menu Buttons Grid -->
+                    <div class="access-quick-menu">
+                        <button type="button" class="access-menu-btn" id="access-btn-profiles">
+                            <img src="assets/icon_computer.png" width="22" height="22" style="image-rendering: pixelated;" alt="">
+                            <div>
+                                <strong>Switch Profile...</strong>
+                                <div style="font-size: 10px; color: #555;">Arthur / Vance / Guest</div>
+                            </div>
+                        </button>
+
+                        <button type="button" class="access-menu-btn" id="access-btn-lore">
+                            <img src="assets/icon_notepad.png" width="22" height="22" style="image-rendering: pixelated;" alt="">
+                            <div>
+                                <strong>Case File & Lore</strong>
+                                <div style="font-size: 10px; color: #555;">Arthur's dossier & directives</div>
+                            </div>
+                        </button>
+
+                        <button type="button" class="access-menu-btn" id="access-btn-diag">
+                            <img src="assets/icon_sound.png" width="22" height="22" style="image-rendering: pixelated;" alt="">
+                            <div>
+                                <strong>Sound Diagnostic</strong>
+                                <div style="font-size: 10px; color: #555;">Web Audio synthesizer test</div>
+                            </div>
+                        </button>
+
+                        <button type="button" class="access-menu-btn" id="access-btn-reset">
+                            <img src="assets/icon_hard_disk.png" width="22" height="22" style="image-rendering: pixelated;" alt="">
+                            <div>
+                                <strong>Restart Shift</strong>
+                                <div style="font-size: 10px; color: #555;">Reset quests & storage</div>
+                            </div>
+                        </button>
                     </div>
                 </div>
-                <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
-                    <button type="button" id="logon-btn-ok" class="win-btn" style="min-width: 75px; font-weight: bold;">OK</button>
-                    <button type="button" id="logon-btn-cancel" class="win-btn" style="min-width: 75px;">Cancel</button>
-                    <button type="button" id="logon-btn-help" class="win-btn" style="min-width: 75px;"><u>H</u>elp</button>
+            </div>
+
+            <!-- Submodal: Profiles Selection -->
+            <div id="modal-profiles" class="access-submodal hidden">
+                <div class="win-titlebar">
+                    <div class="win-titlebar-left">
+                        <img src="assets/icon_computer.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                        <span>Select User Profile</span>
+                    </div>
+                    <button type="button" class="win-title-btn" onclick="window.LogonMgr.closeSubmodals()">X</button>
                 </div>
+                <div class="win-content" style="padding: 10px;">
+                    <div class="profile-card-option" onclick="window.LogonMgr.selectProfile('arthur')">
+                        <img src="assets/face_normal.png" width="36" height="36" style="image-rendering: pixelated;" alt="">
+                        <div style="flex: 1;">
+                            <strong>Arthur P. Pendelton (Recommended)</strong>
+                            <div style="font-size: 10px; color: #555;">Senior Tax Examiner • Desk 14-B • Facing 5:00 PM filing deadline</div>
+                        </div>
+                    </div>
+                    <div class="profile-card-option" onclick="window.LogonMgr.selectProfile('vance')">
+                        <img src="assets/icon_gears.png" width="36" height="36" style="image-rendering: pixelated;" alt="">
+                        <div style="flex: 1;">
+                            <strong>Director Eugene Vance (Locked)</strong>
+                            <div style="font-size: 10px; color: #b91c1c;">Department Director • Restricted Biometric Mainframe Access</div>
+                        </div>
+                    </div>
+                    <div class="profile-card-option" onclick="window.LogonMgr.selectProfile('guest')">
+                        <img src="assets/icon_question.png" width="36" height="36" style="image-rendering: pixelated;" alt="">
+                        <div style="flex: 1;">
+                            <strong>Temporary Tax Intern (Guest Mode)</strong>
+                            <div style="font-size: 10px; color: #555;">Unrestricted sandbox session without password requirements</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button type="button" class="win-btn" onclick="window.LogonMgr.closeSubmodals()">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submodal: Lore & Backstory Dossier -->
+            <div id="modal-lore" class="access-submodal hidden">
+                <div class="win-titlebar">
+                    <div class="win-titlebar-left">
+                        <img src="assets/icon_notepad.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                        <span>Department Dossier - Arthur P. Pendelton</span>
+                    </div>
+                    <button type="button" class="win-title-btn" onclick="window.LogonMgr.closeSubmodals()">X</button>
+                </div>
+                <div class="win-content" style="padding: 12px; font-size: 11px; line-height: 1.4; max-height: 320px; overflow-y: auto;">
+                    <div style="background: #000080; color: #ffffff; padding: 6px; font-weight: bold; margin-bottom: 8px;">
+                        CASE FILE: ARTHUR P. PENDELTON (EMPLOYEE #8841-B)
+                    </div>
+                    <p style="margin-bottom: 8px;">
+                        Arthur has spent 22 years in the fluorescent glare of the State Revenue Bureau. Armed with a lukewarm cup of instant coffee and a malfunctioning Windows 98 workstation, he faces his greatest hurdle yet: Friday afternoon.
+                    </p>
+                    <p style="margin-bottom: 8px;">
+                        <strong>The Crisis:</strong> The state mainframe shuts down at <strong>5:00 PM sharp</strong>. His supervisor, Director Vance, has issued an ultimatum: audit and certify Form 1040, survive the demonic paper-shredder horrors in the basement (DOOM), outrun the IRS highway pursuit in his 1990s Fiat Panda, and survive an in-person tax audit RPG battle.
+                    </p>
+                    <p style="margin-bottom: 8px;">
+                        <strong>Objectives:</strong> Check the <strong>Workday Objectives</strong> app on the desktop taskbar to complete all 8 milestones and earn your weekend freedom.
+                    </p>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button type="button" class="win-btn" onclick="window.LogonMgr.closeSubmodals()">Acknowledge</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statusbar -->
+            <div class="win-statusbar">
+                <div class="win-status-pane" style="flex: 2;">State Revenue Network • Terminal ID 14-B</div>
+                <div class="win-status-pane">WinTax 98 [Build 4.10.1998]</div>
+                <div class="win-status-pane">Shift Remaining: 45 min</div>
             </div>
         </div>
     </div>
@@ -1177,6 +1329,10 @@ Type "HELP" for the list of available tax and system commands.
                 Run...
             </div>
             <div class="start-divider"></div>
+            <div class="start-item" onclick="window.LogonMgr.showAccessMenu()">
+                <img src="assets/icon_key.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="" onerror="this.src='assets/icon_windows.png'">
+                Log Off Arthur Pendelton...
+            </div>
             <div class="start-item" onclick="window.SystemAlert('It is now safe to turn off your computer.\nYour tax liabilities remain recorded in the central mainframe.', 'Shut Down WinTax 98', 'info')">
                 <img src="assets/icon_windows.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
                 Shut Down...
