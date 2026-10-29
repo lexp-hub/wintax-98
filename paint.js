@@ -241,6 +241,36 @@
             this.ctx.restore();
         }
 
+        saveToVFS(fileName = 'Approved_Stamp.bmp') {
+            if (!this.canvas) return;
+            const dataUrl = this.canvas.toDataURL('image/png');
+            const path = `/C:/TAX_DOCUMENTS/${fileName}`;
+            if (window.VFS) {
+                window.VFS.writeFile(path, dataUrl, 'paint');
+            }
+            if (window.AudioMgr && window.AudioMgr.playSfx) window.AudioMgr.playSfx('select');
+            if (window.QuestEngine) {
+                window.QuestEngine.complete('paint');
+            }
+            if (window.SystemAlert) {
+                window.SystemAlert(
+                    `Bitmap saved successfully to virtual disk!\nLocation: ${path}\nSize: 480x280 24-bit RGB bitmap.`,
+                    "Paint - Saved",
+                    "info"
+                );
+            }
+        }
+
+        openFromVFS(dataUrl) {
+            if (!dataUrl || !this.ctx || !this.canvas) return;
+            const img = new Image();
+            img.onload = () => {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.ctx.drawImage(img, 0, 0);
+            };
+            img.src = dataUrl;
+        }
+
         // Flood Fill (Paint Bucket)
         floodFill(startX, startY, fillColorHex) {
             const ctx = this.ctx;

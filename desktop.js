@@ -310,6 +310,9 @@ class WindowManager {
             this.open('win-caffe');
         } else if (appId === 'format') {
             this.open('win-format');
+        } else if (appId === 'quests') {
+            this.open('win-quests');
+            if (window.QuestEngine) window.QuestEngine.renderQuestsWindow();
         }
     }
 }

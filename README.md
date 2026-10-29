@@ -21,8 +21,11 @@ WinTax 98 is an open-source, nostalgic recreation of the classic Windows 98 desk
 
 ### Features
 
-- **Classic desktop & window manager**: Draggable and resizable windows, taskbar with running application tabs, live system clock, hierarchical Start Menu, and native-replacing in-site modal dialogs (`win-msgbox`).
-- **Retro bundled applications**: Complete suite including Paint (`pbrush.exe`) with 2-column toolbox, flood fill and audit stamps, Task Manager (`taskmgr.exe`), Control Panel, 90s LCD Calculator, DOS Prompt (`command.com`), and Minesweeper.
+- **Arthur Pendelton Lore & Workday Quests**: Step into the worn shoes of Arthur P. Pendelton, a middle-aged internal examiner at Desk 14-B racing against the 5:00 PM shift deadline. Complete 8 narrative objectives while dealing with obstinate computer glitches and Director Vance's surveillance.
+- **Windows 98 Domain Logon**: Authentic networking authentication dialog on boot with profile credentials (`coffee1998` password hint) and classic startup chimes.
+- **Persistent FAT32 Virtual File System**: Fully simulated OS file manager with persistent `localStorage` storage. Create, edit, rename, and delete files; browse folders (`C:\TAX_DOCUMENTS`, `C:\MEMOS`, `C:\DIARY`, `A:\Floppy`); save Paint drawings and Notepad text files directly to disk; and recover deleted forms from the Recycle Bin.
+- **Classic desktop & window manager**: Draggable and resizable windows, taskbar with running application tabs and quest tracker badge, live system clock, hierarchical Start Menu, and in-site modal dialogs (`win-msgbox`).
+- **Retro bundled applications**: Complete suite including Paint (`pbrush.exe`) with 2-column toolbox and file saving to disk, Notepad with VFS open/save, Task Manager (`taskmgr.exe`), Control Panel, 90s LCD Calculator, DOS Prompt (`command.com`), CD-ROM Coffee cup holder utility, and Minesweeper.
 - **Procedural sound synthesizer**: Native Web Audio API procedural generation for startup chimes, system chords, error dings, and 8-bit chip tunes with zero external audio assets.
 - **Tax filing minigame gauntlet**: Complete IRS Form 1040 by conquering `DOOM_TAX.EXE` (3D canvas raycaster), `PANDA_RACE.EXE` (pseudo-3D highway getaway), and `Audit RPG 90s` (turn-based auditor battle).
 

@@ -1120,3 +1120,76 @@ body.dark-mode .win-captcha-box { background: #1e222b; }
     cursor: pointer;
     padding: 0;
 }
+
+/* ==========================================================================
+   WINDOWS 98 LOGON SCREEN OVERLAY
+   ========================================================================== */
+#win-logon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #008080; /* Classic Win98 Teal */
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#win-logon-overlay.hidden {
+    display: none !important;
+}
+
+.logon-dialog {
+    width: 440px;
+    background: var(--win-bg);
+    border: 2px outset #ffffff;
+    box-shadow: 2px 2px 0 #000000;
+}
+
+/* Tree view styling */
+.tree-node {
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+.tree-node:hover {
+    background: #e2e8f0;
+}
+.tree-node.selected {
+    background: #0a246a;
+    color: #ffffff;
+}
+
+/* Quest item card */
+.quest-card {
+    border: 1px solid #c0c0c0;
+    background: #f8fafc;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 11px;
+}
+.quest-card.completed {
+    background: #f0fdf4;
+    border-color: #86efac;
+}
+.quest-card-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 2px inset #ffffff;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+.quest-card.completed .quest-card-checkbox {
+    background: #22c55e;
+    color: #ffffff;
+}
+

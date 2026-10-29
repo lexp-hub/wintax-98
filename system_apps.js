@@ -699,47 +699,432 @@
 
 
     // =========================================================================
-    // 6. FILE EXPLORER (explorer.exe)
+    // 6. NOTEPAD (notepad.exe) - VFS Integration & Quest Tracking
     // =========================================================================
-    window.ExplorerApp = {
-        openItem: function(itemId) {
-            window.AudioMgr.playSfx('select');
-            switch(itemId) {
-                case 'unico':
-                    if (window.WinMgr) window.WinMgr.openApp('entratel');
-                    break;
-                case 'doom':
-                    if (window.WinMgr) window.WinMgr.openApp('doom');
-                    break;
-                case 'panda':
-                    if (window.WinMgr) window.WinMgr.openApp('racer');
-                    break;
-                case 'note':
-                    if (window.WinMgr) window.WinMgr.openApp('notepad');
-                    break;
-                case 'paint':
-                    if (window.WinMgr) window.WinMgr.openApp('paint');
-                    break;
-                case 'doc':
-                    window.SystemAlert(
-                        "[FINAL NOTICE OF LEVY]\n\n" +
-                        "Subject: Notice of Intent to Levy 1997 Special License Assessment.\n" +
-                        "Amount Assessed: $ 1,840.50.\n" +
-                        "Payment Deadline: 1:00 PM today.",
-                        "File Explorer - IRS Notice",
-                        "warning"
-                    );
-                    break;
-                default:
-                    window.SystemAlert("Selected item: " + itemId, "File Explorer", "info");
-                    break;
+    window.NotepadApp = {
+        currentFilePath: '/C:/TAX_DOCUMENTS/Tax_Notes.txt',
+
+        init: function() {
+            const textarea = document.getElementById('notepad-text');
+            if (!textarea) return;
+
+            if (window.VFS) {
+                const content = window.VFS.readFile(this.currentFilePath);
+                if (content !== null) {
+                    textarea.value = content;
+                }
+            }
+
+            textarea.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    e.preventDefault();
+                    this.saveFile();
+                }
+            });
+        },
+
+        newFile: function() {
+            const textarea = document.getElementById('notepad-text');
+            if (textarea) textarea.value = '';
+            this.currentFilePath = null;
+            this.updateTitle('Untitled');
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+        },
+
+        openFile: function(path) {
+            const textarea = document.getElementById('notepad-text');
+            if (!textarea || !window.VFS) return;
+
+            const content = window.VFS.readFile(path);
+            if (content === null) {
+                window.SystemAlert("File not found on virtual disk: " + path, "Notepad", "error");
+                return;
+            }
+
+            this.currentFilePath = path;
+            textarea.value = content;
+            const fileName = path.split('/').pop();
+            this.updateTitle(fileName);
+            if (window.WinMgr) window.WinMgr.open('win-notepad');
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+
+            // Quest trigger: Reading Vance's memo
+            if (fileName === 'DIRECTOR_VANCE_WARNING.txt' && window.QuestEngine) {
+                window.QuestEngine.complete('memo');
+            }
+        },
+
+        saveFile: function() {
+            const textarea = document.getElementById('notepad-text');
+            if (!textarea || !window.VFS) return;
+
+            if (!this.currentFilePath) {
+                return this.saveAs();
+            }
+
+            window.VFS.writeFile(this.currentFilePath, textarea.value, 'notepad');
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+            if (window.SystemAlert) {
+                window.SystemAlert("File saved to virtual disk successfully:\n" + this.currentFilePath, "Notepad - Saved", "info");
+            }
+            if (window.ExplorerApp && window.ExplorerApp.refresh) {
+                window.ExplorerApp.refresh();
+            }
+        },
+
+        saveAs: function() {
+            const textarea = document.getElementById('notepad-text');
+            if (!textarea || !window.VFS) return;
+
+            const name = prompt("Enter file name to save in C:\\TAX_DOCUMENTS\\:", "Audit_Notes.txt");
+            if (!name) return;
+
+            const cleanName = name.trim().endsWith('.txt') ? name.trim() : name.trim() + '.txt';
+            this.currentFilePath = `/C:/TAX_DOCUMENTS/${cleanName}`;
+            window.VFS.writeFile(this.currentFilePath, textarea.value, 'notepad');
+            this.updateTitle(cleanName);
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+            if (window.SystemAlert) {
+                window.SystemAlert("File saved to virtual disk:\n" + this.currentFilePath, "Notepad - Saved", "info");
+            }
+            if (window.ExplorerApp && window.ExplorerApp.refresh) {
+                window.ExplorerApp.refresh();
+            }
+        },
+
+        updateTitle: function(name) {
+            const titleSpan = document.querySelector('#win-notepad .win-titlebar-left span');
+            if (titleSpan) {
+                titleSpan.innerText = `${name} - Notepad`;
             }
         }
     };
 
+    // =========================================================================
+    // 7. FILE EXPLORER (explorer.exe) - Real VFS Integration
+    // =========================================================================
+    window.ExplorerApp = {
+        currentPath: '/C:/TAX_DOCUMENTS',
+        selectedItemName: null,
+
+        init: function() {
+            this.setupAddressBar();
+            this.renderTree();
+            this.renderFiles();
+        },
+
+        navigate: function(path) {
+            if (!window.VFS) return;
+            const node = window.VFS.getNode(path);
+            if (!node || node.type !== 'folder') return;
+
+            this.currentPath = window.VFS.normalizePath(path);
+            this.selectedItemName = null;
+            this.renderTree();
+            this.renderFiles();
+            this.updateAddressBar();
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+        },
+
+        up: function() {
+            if (!window.VFS) return;
+            const parts = this.currentPath.split('/').filter(Boolean);
+            if (parts.length <= 1) {
+                this.navigate('/C:');
+                return;
+            }
+            parts.pop();
+            const parent = '/' + parts.join('/');
+            this.navigate(parent);
+        },
+
+        setupAddressBar: function() {
+            const input = document.getElementById('explorer-address-input');
+            if (!input) return;
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    let p = input.value.trim().replace(/\\/g, '/');
+                    if (!p.startsWith('/')) p = '/' + p;
+                    this.navigate(p);
+                }
+            });
+        },
+
+        updateAddressBar: function() {
+            const input = document.getElementById('explorer-address-input');
+            if (input) {
+                input.value = this.currentPath.replace(/\//g, '\\').replace(/^\\/, '');
+            }
+            const titleSpan = document.querySelector('#win-explorer .win-titlebar-left span');
+            if (titleSpan) {
+                titleSpan.innerText = `Exploring - ${this.currentPath.replace(/\//g, '\\').replace(/^\\/, '')}`;
+            }
+        },
+
+        renderTree: function() {
+            const treeContainer = document.getElementById('explorer-tree-view');
+            if (!treeContainer || !window.VFS) return;
+            treeContainer.innerHTML = '';
+
+            const createTreeItem = (label, icon, path, depth = 0) => {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.alignItems = 'center';
+                div.style.gap = '4px';
+                div.style.padding = '2px 4px';
+                div.style.cursor = 'pointer';
+                div.style.marginLeft = `${depth * 10}px`;
+                div.style.fontSize = '11px';
+
+                const isCurrent = this.currentPath === path;
+                if (isCurrent) {
+                    div.style.background = '#0a246a';
+                    div.style.color = '#ffffff';
+                }
+
+                div.innerHTML = `
+                    <img src="${icon}" width="16" height="16" style="image-rendering: pixelated; flex-shrink: 0;" alt="">
+                    <span>${label}</span>
+                `;
+                div.onclick = (e) => {
+                    e.stopPropagation();
+                    this.navigate(path);
+                };
+                return div;
+            };
+
+            treeContainer.appendChild(createTreeItem('My Computer', 'assets/icon_computer.png', '/C:', 0));
+            treeContainer.appendChild(createTreeItem('3½ Floppy (A:)', 'assets/icon_floppy.png', '/A:', 1));
+            treeContainer.appendChild(createTreeItem('Local Disk (C:)', 'assets/icon_hard_disk.png', '/C:', 1));
+            treeContainer.appendChild(createTreeItem('TAX_DOCUMENTS', 'assets/icon_folder.png', '/C:/TAX_DOCUMENTS', 2));
+            treeContainer.appendChild(createTreeItem('MEMOS', 'assets/icon_folder.png', '/C:/MEMOS', 2));
+            treeContainer.appendChild(createTreeItem('DIARY', 'assets/icon_folder.png', '/C:/DIARY', 2));
+            treeContainer.appendChild(createTreeItem('PROGRAMS', 'assets/icon_folder.png', '/C:/PROGRAMS', 2));
+            treeContainer.appendChild(createTreeItem('RECYCLE_BIN', 'assets/icon_recycle.png', '/C:/RECYCLE_BIN', 2));
+        },
+
+        renderFiles: function() {
+            const filesContainer = document.getElementById('explorer-files-view');
+            const statusCount = document.getElementById('explorer-status-count');
+            const statusSize = document.getElementById('explorer-status-size');
+            if (!filesContainer || !window.VFS) return;
+
+            filesContainer.innerHTML = '';
+            const items = window.VFS.list(this.currentPath);
+
+            items.forEach(item => {
+                const el = document.createElement('div');
+                el.className = `explorer-file-item ${this.selectedItemName === item.name ? 'selected' : ''}`;
+                el.style.display = 'inline-flex';
+                el.style.flexDirection = 'column';
+                el.style.alignItems = 'center';
+                el.style.textAlign = 'center';
+                el.style.width = '78px';
+                el.style.margin = '4px';
+                el.style.padding = '4px 2px';
+                el.style.cursor = 'pointer';
+                el.style.verticalAlign = 'top';
+                el.style.border = this.selectedItemName === item.name ? '1px dotted #000080' : '1px solid transparent';
+                el.style.background = this.selectedItemName === item.name ? 'rgba(10,36,106,0.18)' : 'transparent';
+
+                let icon = 'assets/icon_folder.png';
+                if (item.type === 'file') {
+                    if (item.name.endsWith('.exe')) {
+                        icon = item.name.includes('DOOM') ? 'assets/icon_doom.png' : 'assets/icon_game.png';
+                    } else if (item.name.endsWith('.bmp')) {
+                        icon = 'assets/icon_paint.png';
+                    } else if (item.name.endsWith('.ade')) {
+                        icon = 'assets/icon_computer.png';
+                    } else {
+                        icon = 'assets/icon_notepad.png';
+                    }
+                }
+
+                el.innerHTML = `
+                    <img src="${icon}" width="32" height="32" style="image-rendering: pixelated; margin-bottom: 2px;" alt="">
+                    <span style="font-size: 11px; word-break: break-all; line-height: 1.1;">${item.name}</span>
+                `;
+
+                el.onclick = (e) => {
+                    e.stopPropagation();
+                    this.selectedItemName = item.name;
+                    this.renderFiles();
+                };
+
+                el.ondblclick = (e) => {
+                    e.stopPropagation();
+                    this.openItem(item);
+                };
+
+                filesContainer.appendChild(el);
+            });
+
+            if (statusCount) statusCount.innerText = `${items.length} object(s)`;
+            if (statusSize) statusSize.innerText = this.currentPath;
+        },
+
+        openItem: function(item) {
+            if (!item) return;
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+
+            if (item.type === 'folder') {
+                this.navigate(`${this.currentPath}/${item.name}`);
+                return;
+            }
+
+            const fullPath = `${this.currentPath}/${item.name}`;
+
+            if (item.app === 'entratel' || item.name.endsWith('.ade')) {
+                if (window.WinMgr) window.WinMgr.openApp('entratel');
+            } else if (item.app === 'doom' || item.name.includes('DOOM')) {
+                if (window.WinMgr) window.WinMgr.openApp('doom');
+            } else if (item.app === 'racer' || item.name.includes('PANDA')) {
+                if (window.WinMgr) window.WinMgr.openApp('racer');
+            } else if (item.app === 'rpg' || item.name.includes('RPG')) {
+                if (window.WinMgr) window.WinMgr.openApp('rpg');
+            } else if (item.app === 'paint' || item.name.endsWith('.bmp')) {
+                if (window.WinMgr) window.WinMgr.openApp('paint');
+                if (window.PaintApp && item.content) {
+                    window.PaintApp.openFromVFS(item.content);
+                }
+            } else if (item.app === 'calc') {
+                if (window.WinMgr) window.WinMgr.openApp('calc');
+            } else {
+                if (window.NotepadApp) {
+                    window.NotepadApp.openFile(fullPath);
+                }
+            }
+        },
+
+        createFolder: function() {
+            const name = prompt("Enter new folder name:", "NEW_FOLDER");
+            if (!name || !window.VFS) return;
+            const path = `${this.currentPath}/${name.trim()}`;
+            window.VFS.mkdir(path);
+            this.navigate(this.currentPath);
+        },
+
+        createFile: function() {
+            const name = prompt("Enter new document name:", "New_Document.txt");
+            if (!name || !window.VFS) return;
+            const cleanName = name.trim().endsWith('.txt') ? name.trim() : name.trim() + '.txt';
+            const path = `${this.currentPath}/${cleanName}`;
+            window.VFS.writeFile(path, "New tax document created by Arthur Pendelton.", 'notepad');
+            this.renderFiles();
+            if (window.NotepadApp) {
+                window.NotepadApp.openFile(path);
+            }
+        },
+
+        deleteSelected: function() {
+            if (!this.selectedItemName || !window.VFS) {
+                window.SystemAlert("Please select an item to delete.", "File Explorer", "warning");
+                return;
+            }
+            const path = `${this.currentPath}/${this.selectedItemName}`;
+            window.SystemConfirm(
+                `Are you sure you want to send '${this.selectedItemName}' to the Recycle Bin?`,
+                "Confirm File Delete",
+                "warning",
+                () => {
+                    window.VFS.deleteItem(path);
+                    this.selectedItemName = null;
+                    this.renderFiles();
+                    if (window.RecycleBinApp && window.RecycleBinApp.refresh) {
+                        window.RecycleBinApp.refresh();
+                    }
+                }
+            );
+        },
+
+        refresh: function() {
+            this.renderTree();
+            this.renderFiles();
+        }
+    };
 
     // =========================================================================
-    // 7. FORMAT C: AND COFFEE UTILITIES
+    // 8. RECYCLE BIN APP (win-trash) - Real VFS Integration
+    // =========================================================================
+    window.RecycleBinApp = {
+        refresh: function() {
+            const container = document.getElementById('recycle-bin-files-container');
+            if (!container || !window.VFS) return;
+
+            container.innerHTML = '';
+            const items = window.VFS.list('/C:/RECYCLE_BIN');
+
+            items.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'explorer-file-item';
+                el.style.display = 'inline-flex';
+                el.style.flexDirection = 'column';
+                el.style.alignItems = 'center';
+                el.style.textAlign = 'center';
+                el.style.width = '80px';
+                el.style.margin = '4px';
+                el.style.padding = '4px';
+                el.style.cursor = 'pointer';
+
+                el.innerHTML = `
+                    <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated; margin-bottom: 2px;" alt="">
+                    <span style="font-size: 10px; word-break: break-all;">${item.name}</span>
+                `;
+
+                el.ondblclick = () => {
+                    window.SystemAlert(
+                        `Deleted File: ${item.name}\nSize: ${item.size || '12 KB'}\nOriginal Location: ${item.originalPath || 'C:\\'}\n\nUnder Federal Code § 6501, tax records are preserved.`,
+                        "Recycle Bin Item",
+                        "info"
+                    );
+                };
+
+                container.appendChild(el);
+            });
+
+            const statusPane = document.getElementById('recycle-bin-status-count');
+            if (statusPane) statusPane.innerText = `${items.length} object(s)`;
+        },
+
+        restoreAll: function() {
+            if (!window.VFS) return;
+            const items = window.VFS.list('/C:/RECYCLE_BIN');
+            if (items.length === 0) {
+                window.SystemAlert("Recycle Bin is already empty.", "Recycle Bin", "info");
+                return;
+            }
+
+            items.forEach(it => {
+                window.VFS.restoreItem(it.name);
+            });
+
+            this.refresh();
+            if (window.ExplorerApp && window.ExplorerApp.refresh) {
+                window.ExplorerApp.refresh();
+            }
+            if (window.AudioMgr) window.AudioMgr.playSfx('select');
+            window.SystemAlert("All deleted files have been restored to their original folders.", "Recycle Bin", "info");
+        },
+
+        empty: function() {
+            window.SystemConfirm(
+                "WARNING: Attempting to shred federal audit files may prompt an automatic IRS disciplinary notice.\n\nDo you want to purge non-recoverable items?",
+                "Empty Recycle Bin",
+                "warning",
+                () => {
+                    if (window.VFS) {
+                        window.VFS.emptyRecycleBin();
+                    }
+                    this.refresh();
+                    if (window.AudioMgr) window.AudioMgr.playSfx('select');
+                    window.SystemAlert("Recycle Bin emptied.", "Recycle Bin", "info");
+                }
+            );
+        }
+    };
+
+    // =========================================================================
+    // 9. FORMAT C: AND COFFEE UTILITIES
     // =========================================================================
     function setupFormatUtility() {
         const startBtn = document.getElementById('btn-start-format');
@@ -805,12 +1190,16 @@
                 window.AudioMgr.playSfx('ding');
                 if (statusLine) statusLine.innerText = 'TRAY STATUS: [REFILL 100% - CAFFEINE BOOST ACTIVE]';
                 if (cupState) cupState.innerText = 'Fresh hot espresso poured! Taxpayer focus restored by 50%.';
+                // Quest trigger: Coffee poured!
+                if (window.QuestEngine) {
+                    window.QuestEngine.complete('coffee');
+                }
             };
         }
     }
 
     // =========================================================================
-    // 8. GLOBAL KEYBOARD SHORTCUTS (Ctrl+Alt+Del, Ctrl+Shift+Esc)
+    // 10. GLOBAL KEYBOARD SHORTCUTS (Ctrl+Alt+Del, Ctrl+Shift+Esc)
     // =========================================================================
     window.addEventListener('keydown', (e) => {
         if ((e.ctrlKey && e.altKey && e.key === 'Delete') || (e.ctrlKey && e.shiftKey && e.key === 'Escape')) {
@@ -826,8 +1215,10 @@
         window.CalcApp.init();
         window.DosApp.init();
         window.TaskMgrApp.init();
+        window.NotepadApp.init();
+        window.ExplorerApp.init();
+        window.RecycleBinApp.refresh();
         setupFormatUtility();
         setupCoffeeUtility();
     });
-
 })();

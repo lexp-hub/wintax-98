@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Coffee.exe',
             iconImg: 'assets/icon_cd.png'
         });
+        window.WinMgr.register('win-quests', {
+            title: 'Workday Objectives',
+            iconImg: 'assets/icon_notepad.png'
+        });
 
         // Open TaxReturn 4.2 window by default
         window.WinMgr.open('win-entratel');
@@ -182,6 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             } else {
                 window.AudioMgr.playSfx('victory');
+                if (window.QuestEngine) {
+                    window.QuestEngine.complete('filing');
+                }
                 alert(
                     "[APPROVED] ELECTRONIC FILING COMPLETED SUCCESSFULLY.\n\n" +
                     "Confirmation Number: IRS-2024-9948201-TAX\n" +

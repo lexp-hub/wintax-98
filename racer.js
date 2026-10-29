@@ -158,6 +158,10 @@ class RetroRacer {
         this.stop();
         window.AudioMgr.playSfx('victory');
 
+        if (window.QuestEngine) {
+            window.QuestEngine.complete('racer');
+        }
+
         alert("[PANDA_RACE.EXE]\nTOLL BOOTH REACHED!\nYou outran the IRS highway patrol cars!\nSystem notification dismissed successfully.");
 
         if (window.onPopupCloseSuccess) {

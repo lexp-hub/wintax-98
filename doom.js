@@ -245,6 +245,7 @@ class DoomManager {
         const remaining = this.enemies.filter(e => e.alive).length;
         if (remaining === 0) {
             this.stop();
+            if (window.QuestEngine) window.QuestEngine.complete('doom');
             setTimeout(() => {
                 window.AudioMgr.playSfx('victory');
                 alert("[DOOM_TAX.EXE]\nMISSION ACCOMPLISHED!\nAll tax audit files have been stapled and archived!\nHigh contrast mode approved.");

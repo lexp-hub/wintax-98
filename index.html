@@ -9,9 +9,58 @@
 <body>
 
     <!-- ====================================================================
+         WINTAX 98 LOGON OVERLAY
+         ==================================================================== -->
+    <div id="win-logon-overlay">
+        <div class="logon-dialog win-window active">
+            <div class="win-titlebar">
+                <div class="win-titlebar-left">
+                    <img src="assets/icon_windows.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                    <span>Log On to WinTax 98</span>
+                </div>
+            </div>
+            <div class="win-content" style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; gap: 14px; align-items: flex-start;">
+                    <img src="assets/icon_windows.png" width="48" height="48" style="image-rendering: pixelated; flex-shrink: 0;" alt="">
+                    <div style="font-size: 11px; line-height: 1.4;">
+                        Type a user name and password to log on to the <strong>IRS Internal Tax Processing Network</strong>.
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label style="width: 80px; font-weight: bold; font-size: 11px;"><u>U</u>ser name:</label>
+                        <input type="text" id="logon-input-user" class="win-input" value="Arthur P. Pendelton" style="flex: 1;" readonly>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label for="logon-input-password" style="width: 80px; font-weight: bold; font-size: 11px;"><u>P</u>assword:</label>
+                        <input type="password" id="logon-input-password" class="win-input" value="coffee1998" style="flex: 1;" autofocus>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label style="width: 80px; font-size: 11px;">Domain:</label>
+                        <input type="text" class="win-input" value="REVENUE-DEPT-14" style="flex: 1;" readonly>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
+                    <button type="button" id="logon-btn-ok" class="win-btn" style="min-width: 75px; font-weight: bold;">OK</button>
+                    <button type="button" id="logon-btn-cancel" class="win-btn" style="min-width: 75px;">Cancel</button>
+                    <button type="button" id="logon-btn-help" class="win-btn" style="min-width: 75px;"><u>H</u>elp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
          DESKTOP WINTAX 98
          ==================================================================== -->
     <div id="desktop">
+
+        <!-- Icon 0: Workday Quests -->
+        <div class="desktop-icon" data-app="quests" title="Double-click to open Workday Objectives">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="Workday Objectives">
+            </div>
+            <span class="desktop-icon-label">Workday Quests</span>
+        </div>
 
         <!-- Icon 1: File Explorer (C:\) -->
         <div class="desktop-icon" data-app="explorer" title="Double-click to open File Explorer">
@@ -379,7 +428,7 @@
         <div class="win-titlebar">
             <div class="win-titlebar-left">
                 <img src="assets/icon_notepad.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
-                <span>Tax_Notes.txt - Notepad</span>
+                <span id="notepad-title">Tax_Notes.txt - Notepad</span>
             </div>
             <div class="win-titlebar-buttons">
                 <button type="button" class="win-title-btn win-title-btn-min">_</button>
@@ -388,10 +437,11 @@
             </div>
         </div>
         <div class="win-menubar">
-            <span>File</span>
-            <span>Edit</span>
-            <span>Search</span>
-            <span>Help</span>
+            <span onclick="window.NotepadApp.newFile()"><u>N</u>ew</span>
+            <span onclick="window.NotepadApp.openFile()"><u>O</u>pen...</span>
+            <span onclick="window.NotepadApp.saveFile()"><u>S</u>ave</span>
+            <span onclick="window.NotepadApp.saveAs()">Save <u>A</u>s...</span>
+            <span onclick="window.SystemAlert('WinTax 98 Notepad v4.2\nUse Ctrl+S to save directly into the Virtual File System.', 'Help', 'info')"><u>?</u> Help</span>
         </div>
         <div class="win-content" style="padding: 0;">
             <textarea id="notepad-text">CONFIDENTIAL MEMORANDUM - IRS REVENUE SERVICE
@@ -820,11 +870,11 @@ Type "HELP" for the list of available tax and system commands.
     </div>
 
     <!-- FILE EXPLORER (explorer.exe) -->
-    <div id="win-explorer" class="win-window hidden" style="top: 60px; left: 130px; width: 560px; height: 380px;">
+    <div id="win-explorer" class="win-window hidden" style="top: 60px; left: 130px; width: 620px; height: 420px;">
         <div class="win-titlebar">
             <div class="win-titlebar-left">
                 <img src="assets/icon_folder.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
-                <span>Exploring - C:\TAX_DOCUMENTS</span>
+                <span id="explorer-title-path">Exploring - C:\</span>
             </div>
             <div class="win-titlebar-buttons">
                 <button type="button" class="win-title-btn win-title-btn-min">_</button>
@@ -833,71 +883,35 @@ Type "HELP" for the list of available tax and system commands.
             </div>
         </div>
         <div class="win-menubar">
-            <span onclick="window.SystemAlert('Explorer File Operations', 'File', 'info')"><u>F</u>ile</span>
-            <span><u>E</u>dit</span>
-            <span><u>V</u>iew</span>
-            <span><u>T</u>ools</span>
-            <span onclick="window.SystemAlert('File Explorer for WinTax 98. FAT32 File System.', 'Help', 'info')"><u>?</u> Help</span>
+            <span onclick="window.ExplorerApp.promptNewFolder()"><u>N</u>ew Folder</span>
+            <span onclick="window.ExplorerApp.promptNewTextFile()"><u>N</u>ew Document</span>
+            <span onclick="window.ExplorerApp.deleteSelected()"><u>D</u>elete</span>
+            <span onclick="window.ExplorerApp.render()"><u>R</u>efresh</span>
+            <span onclick="window.SystemAlert('File Explorer for WinTax 98.\nDouble click folders and files to open or run.\nChanges persist in browser localStorage.', 'Help', 'info')"><u>?</u> Help</span>
         </div>
-        <div style="padding: 4px 6px; background: var(--win-bg); border-bottom: 1px solid #808080; display: flex; align-items: center; gap: 6px; font-size: 11px;">
-            <span>Address:</span>
-            <input type="text" class="win-input" value="C:\TAX_DOCUMENTS" style="flex: 1; font-family: monospace;" readonly>
+        <!-- Toolbar -->
+        <div style="padding: 3px 6px; background: var(--win-bg); border-bottom: 1px solid #808080; display: flex; align-items: center; gap: 4px; font-size: 11px;">
+            <button type="button" class="win-btn" style="padding: 2px 6px; font-size: 11px;" onclick="window.ExplorerApp.goUp()" title="Up One Level">&#8679; Up</button>
+            <button type="button" class="win-btn" style="padding: 2px 6px; font-size: 11px;" onclick="window.ExplorerApp.promptNewFolder()" title="New Folder">+ Folder</button>
+            <button type="button" class="win-btn" style="padding: 2px 6px; font-size: 11px;" onclick="window.ExplorerApp.promptNewTextFile()" title="New Text File">+ Text Doc</button>
+            <button type="button" class="win-btn" style="padding: 2px 6px; font-size: 11px;" onclick="window.ExplorerApp.deleteSelected()" title="Send to Recycle Bin">Delete</button>
+            <div style="flex: 1; display: flex; align-items: center; gap: 4px; margin-left: 6px;">
+                <span>Address:</span>
+                <input type="text" id="explorer-address-input" class="win-input" value="C:\" style="flex: 1; font-family: monospace; font-size: 11px;" onkeydown="if(event.key==='Enter') window.ExplorerApp.openPath(this.value);">
+                <button type="button" class="win-btn" style="padding: 2px 6px; font-size: 11px;" onclick="window.ExplorerApp.openPath(document.getElementById('explorer-address-input').value)">Go</button>
+            </div>
         </div>
-        <div class="win-content" style="display: flex; flex: 1; padding: 0; background: #ffffff;">
+        <div class="win-content" style="display: flex; flex: 1; padding: 0; background: #ffffff; min-height: 220px;">
             <!-- Tree View Left -->
-            <div style="width: 160px; border-right: 2px inset #ffffff; background: #ffffff; padding: 6px; font-size: 11px; overflow-y: auto;">
-                <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
-                    <img src="assets/icon_computer.png" width="16" height="16" style="image-rendering: pixelated;">
-                    <strong>My Computer</strong>
-                </div>
-                <div style="margin-left: 12px; display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
-                    <img src="assets/icon_floppy.png" width="16" height="16" style="image-rendering: pixelated;">
-                    <span>3½ Floppy (A:)</span>
-                </div>
-                <div style="margin-left: 12px; display: flex; align-items: center; gap: 4px; margin-bottom: 4px; background: #0a246a; color: #fff; padding: 1px 3px;">
-                    <img src="assets/icon_hard_disk.png" width="16" height="16" style="image-rendering: pixelated;">
-                    <span>Hard Disk (C:)</span>
-                </div>
-                <div style="margin-left: 24px; display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
-                    <img src="assets/icon_folder.png" width="16" height="16" style="image-rendering: pixelated;">
-                    <span>TAX_DOCS</span>
-                </div>
-                <div style="margin-left: 12px; display: flex; align-items: center; gap: 4px;">
-                    <img src="assets/icon_cd.png" width="16" height="16" style="image-rendering: pixelated;">
-                    <span>CD-ROM (D:)</span>
-                </div>
+            <div id="explorer-tree-view" style="width: 170px; border-right: 2px inset #ffffff; background: #ffffff; padding: 6px; font-size: 11px; overflow-y: auto;">
             </div>
             <!-- File List Right -->
-            <div style="flex: 1; padding: 8px; overflow-y: auto; background: #ffffff;">
-                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('unico')" title="Double-click to open">
-                    <img src="assets/icon_computer.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Form1040_2024.ade</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('doom')" title="Double-click to launch">
-                    <img src="assets/icon_msdos.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>DOOM_TAX.EXE</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('panda')" title="Double-click to launch">
-                    <img src="assets/icon_game.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>PANDA_RACE.EXE</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('note')" title="Double-click to read">
-                    <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Tax_Notes.txt</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('paint')" title="Double-click to open">
-                    <img src="assets/icon_paint.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Audit_Stamp.bmp</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.ExplorerApp.openItem('doc')" title="Double-click to inspect">
-                    <img src="assets/icon_warning.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Tax_Levy_Notice.doc</span>
-                </div>
+            <div id="explorer-files-view" style="flex: 1; padding: 8px; overflow-y: auto; background: #ffffff; display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; align-content: flex-start;">
             </div>
         </div>
         <div class="win-statusbar">
-            <div class="win-status-pane">6 object(s)</div>
-            <div class="win-status-pane">2.15 MB</div>
+            <div id="explorer-status-count" class="win-status-pane">0 object(s)</div>
+            <div id="explorer-status-size" class="win-status-pane">0 bytes</div>
         </div>
     </div>
 
@@ -945,7 +959,7 @@ Type "HELP" for the list of available tax and system commands.
     </div>
 
     <!-- RECYCLE BIN (win-trash) -->
-    <div id="win-trash" class="win-window hidden" style="top: 85px; left: 160px; width: 480px; height: 320px;">
+    <div id="win-trash" class="win-window hidden" style="top: 85px; left: 160px; width: 500px; height: 340px;">
         <div class="win-titlebar">
             <div class="win-titlebar-left">
                 <img src="assets/icon_recycle.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
@@ -958,34 +972,22 @@ Type "HELP" for the list of available tax and system commands.
             </div>
         </div>
         <div class="win-menubar">
-            <span onclick="window.SystemAlert('Recycle Bin management', 'File', 'info')"><u>F</u>ile</span>
-            <span onclick="window.SystemAlert('Access Denied: Under 26 U.S. Code § 6501, tax audit records may never be shredded.', 'Recycle Bin Error', 'error')"><u>E</u>mpty Recycle Bin</span>
-            <span onclick="window.SystemAlert('Records restored to permanent IRS tax ledger.', 'Recycle Bin', 'info')"><u>R</u>estore All Items</span>
-            <span onclick="window.SystemAlert('Recycle Bin stores deleted tax forms until statutory retention limits expire (year 2099).', 'Help', 'info')"><u>?</u> Help</span>
+            <span onclick="window.RecycleBinApp.empty()"><u>E</u>mpty Recycle Bin</span>
+            <span onclick="window.RecycleBinApp.restoreAll()"><u>R</u>estore All Items</span>
+            <span onclick="window.RecycleBinApp.render()"><u>R</u>efresh</span>
+            <span onclick="window.SystemAlert('Recycle Bin stores deleted files until emptied. Files can be restored back to their original folder.', 'Recycle Bin Help', 'info')"><u>?</u> Help</span>
         </div>
         <div class="win-content" style="padding: 8px; background: #ffffff; display: flex; flex-direction: column;">
             <div style="display: flex; gap: 8px; margin-bottom: 8px; border-bottom: 1px solid #c0c0c0; padding-bottom: 6px;">
-                <button type="button" class="win-btn" style="font-size: 11px;" onclick="window.SystemAlert('Access Denied: Under 26 U.S. Code § 6501, tax audit records may never be purged.', 'IRS Retention Lock', 'error')">Empty Recycle Bin</button>
-                <button type="button" class="win-btn" style="font-size: 11px;" onclick="window.SystemAlert('All 3 deleted tax liens have been restored to your active liabilities.', 'Restored', 'info')">Restore All Items</button>
+                <button type="button" class="win-btn" style="font-size: 11px;" onclick="window.RecycleBinApp.empty()">Empty Recycle Bin</button>
+                <button type="button" class="win-btn" style="font-size: 11px;" onclick="window.RecycleBinApp.restoreAll()">Restore All Items</button>
             </div>
-            <div style="flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px;">
-                <div class="explorer-file-item" ondblclick="window.SystemAlert('File: Form_730_1994.bak\nSize: 42 KB\nOriginal Location: C:\\TAX_DOCS\nStatus: Non-deletable tax debt.', 'Tax Document Properties', 'info')">
-                    <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Form_730_1994.bak</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.SystemAlert('File: Unpaid_Penalty_Notice.doc\nSize: 118 KB\nStatus: Enforceable tax lien.', 'Tax Document Properties', 'warning')">
-                    <img src="assets/icon_warning.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Unpaid_Penalty.doc</span>
-                </div>
-                <div class="explorer-file-item" ondblclick="window.SystemAlert('File: Coffee_Stain_F24.bmp\nSize: 312 KB\nStatus: Physical evidence of non-compliance.', 'Tax Document Properties', 'info')">
-                    <img src="assets/icon_paint.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
-                    <span>Coffee_Stain_F24.bmp</span>
-                </div>
+            <div id="recycle-bin-files-container" style="flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; align-content: flex-start;">
             </div>
         </div>
         <div class="win-statusbar">
-            <div class="win-status-pane">3 object(s)</div>
-            <div class="win-status-pane">472 KB in tax liabilities</div>
+            <div id="recycle-bin-status-count" class="win-status-pane">0 object(s)</div>
+            <div id="recycle-bin-status-size" class="win-status-pane">0 bytes</div>
         </div>
     </div>
 
@@ -1057,6 +1059,39 @@ Type "HELP" for the list of available tax and system commands.
         </div>
     </div>
 
+    <!-- WORKDAY OBJECTIVES / QUEST SYSTEM (win-quests) -->
+    <div id="win-quests" class="win-window hidden" style="top: 40px; left: 140px; width: 540px; height: 440px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_notepad.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Department of Revenue - Workday Objectives (Arthur Pendelton)</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.QuestEngine.renderQuestsWindow()"><u>R</u>efresh</span>
+            <span onclick="window.SystemAlert('Complete all duties before 5:00 PM shift deadline.\nDirector Vance conducts random inspections.', 'Office Protocol', 'info')"><u>P</u>rotocol</span>
+            <span onclick="if(confirm('Reset all completed quests and restart shift?')) { window.QuestEngine.reset(); window.QuestEngine.renderQuestsWindow(); }"><u>R</u>eset Shift</span>
+        </div>
+        <div class="win-content" style="padding: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="background: #ffffcc; border: 1px solid #c0c000; padding: 6px 8px; font-size: 11px;">
+                <strong>NOTICE FROM DIRECTOR VANCE:</strong>
+                <div style="margin-top: 2px; color: #444;">Arthur! Desk 14-B! The state audit mainframe closes at 5:00 PM sharp. Every item on this dispatch checklist must be certified before you clock out, or your annual bonus will be confiscated.</div>
+            </div>
+            <div id="quests-list-container" style="flex: 1; overflow-y: auto; background: #ffffff; border: 2px inset #ffffff; padding: 6px;">
+                <!-- Dynamically rendered by quests.js -->
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane">Desk 14-B - Internal Audit Division</div>
+            <div class="win-status-pane">Shift ends 5:00 PM</div>
+        </div>
+    </div>
+
     <!-- JAVA COOKIE POPUP (TRIGGER PANDA RACE) -->
     <div id="annoying-cookie-popup" class="win-popup-dialog">
         <div class="win-titlebar" style="background: linear-gradient(90deg, #708090, #a0b0c0);">
@@ -1083,6 +1118,11 @@ Type "HELP" for the list of available tax and system commands.
             <span class="start-sidebar-text">WinTax 98</span>
         </div>
         <div class="start-items-list">
+            <div class="start-item" onclick="window.WinMgr.openApp('quests')">
+                <img src="assets/icon_notepad.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                <strong>Workday Objectives</strong>
+            </div>
+            <div class="start-divider"></div>
             <div class="start-item" onclick="window.WinMgr.openApp('entratel')">
                 <img src="assets/icon_computer.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
                 <strong>TaxReturn 4.2</strong>
@@ -1151,6 +1191,10 @@ Type "HELP" for the list of available tax and system commands.
                 <img src="assets/icon_windows.png" width="16" height="16" style="margin-right: 4px; vertical-align: middle; image-rendering: pixelated;" alt="">
                 <span>Start</span>
             </button>
+            <button id="quest-tracker-btn" class="win-btn" onclick="window.WinMgr.openApp('quests')" title="Click to view Workday Objectives" style="margin-left: 4px; display: flex; align-items: center; gap: 4px; font-weight: bold; font-size: 11px; padding: 2px 6px;">
+                <img src="assets/icon_notepad.png" width="14" height="14" style="image-rendering: pixelated;" alt="">
+                <span>Quests: <span id="quest-taskbar-badge">0/8</span></span>
+            </button>
             <div id="taskbar-windows"></div>
         </div>
 
@@ -1164,6 +1208,9 @@ Type "HELP" for the list of available tax and system commands.
 
     <!-- Scripts -->
     <script src="audio.js"></script>
+    <script src="vfs.js"></script>
+    <script src="quests.js"></script>
+    <script src="logon.js"></script>
     <script src="doom.js"></script>
     <script src="racer.js"></script>
     <script src="captcha_rpg.js"></script>

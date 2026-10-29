@@ -200,6 +200,11 @@ class CaptchaRpg {
     win() {
         window.AudioMgr.stopMusic();
         window.AudioMgr.playSfx('victory');
+
+        if (window.QuestEngine) {
+            window.QuestEngine.complete('rpg');
+        }
+
         this.setDialogue("VICTORY!\nThe Auditor concedes and issues an official tax relief decree!\nPhysical attendance validated under Federal Code.");
 
         setTimeout(() => {
