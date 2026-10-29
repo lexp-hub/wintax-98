@@ -45,10 +45,10 @@
             <span class="desktop-icon-label">DOS Prompt</span>
         </div>
 
-        <!-- Icon 5: DOOM_TAX.EXE -->
+        <!-- Icon 5: DOOM_TAX.EXE (Dedicated Doom Skull Icon) -->
         <div class="desktop-icon" data-app="doom" title="Double-click to launch 3D DOOM Tax Audit">
             <div class="desktop-icon-img">
-                <img src="assets/icon_msdos.png" width="32" height="32" style="image-rendering: pixelated;" alt="Doom Tax">
+                <img src="assets/icon_doom.png" width="32" height="32" style="image-rendering: pixelated;" alt="Doom Tax">
             </div>
             <span class="desktop-icon-label">Doom_Tax</span>
         </div>
@@ -59,6 +59,14 @@
                 <img src="assets/icon_game.png" width="32" height="32" style="image-rendering: pixelated;" alt="Panda Race">
             </div>
             <span class="desktop-icon-label">Panda_Race</span>
+        </div>
+
+        <!-- Icon 7: AUDIT_RPG.EXE (Audit RPG 90s) -->
+        <div class="desktop-icon" data-app="rpg" title="Double-click to launch Audit RPG 90s">
+            <div class="desktop-icon-img">
+                <img src="assets/icon_floppy.png" width="32" height="32" style="image-rendering: pixelated;" alt="Audit RPG">
+            </div>
+            <span class="desktop-icon-label">Audit_RPG</span>
         </div>
 
         <!-- Icon 7: Minesweeper -->
@@ -936,6 +944,119 @@ Type "HELP" for the list of available tax and system commands.
         </div>
     </div>
 
+    <!-- RECYCLE BIN (win-trash) -->
+    <div id="win-trash" class="win-window hidden" style="top: 85px; left: 160px; width: 480px; height: 320px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_recycle.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Recycle Bin</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-min">_</button>
+                <button type="button" class="win-title-btn win-title-btn-max">&#9633;</button>
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span onclick="window.SystemAlert('Recycle Bin management', 'File', 'info')"><u>F</u>ile</span>
+            <span onclick="window.SystemAlert('Access Denied: Under 26 U.S. Code § 6501, tax audit records may never be shredded.', 'Recycle Bin Error', 'error')"><u>E</u>mpty Recycle Bin</span>
+            <span onclick="window.SystemAlert('Records restored to permanent IRS tax ledger.', 'Recycle Bin', 'info')"><u>R</u>estore All Items</span>
+            <span onclick="window.SystemAlert('Recycle Bin stores deleted tax forms until statutory retention limits expire (year 2099).', 'Help', 'info')"><u>?</u> Help</span>
+        </div>
+        <div class="win-content" style="padding: 8px; background: #ffffff; display: flex; flex-direction: column;">
+            <div style="display: flex; gap: 8px; margin-bottom: 8px; border-bottom: 1px solid #c0c0c0; padding-bottom: 6px;">
+                <button type="button" class="win-btn" style="font-size: 11px;" onclick="window.SystemAlert('Access Denied: Under 26 U.S. Code § 6501, tax audit records may never be purged.', 'IRS Retention Lock', 'error')">Empty Recycle Bin</button>
+                <button type="button" class="win-btn" style="font-size: 11px;" onclick="window.SystemAlert('All 3 deleted tax liens have been restored to your active liabilities.', 'Restored', 'info')">Restore All Items</button>
+            </div>
+            <div style="flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px;">
+                <div class="explorer-file-item" ondblclick="window.SystemAlert('File: Form_730_1994.bak\nSize: 42 KB\nOriginal Location: C:\\TAX_DOCS\nStatus: Non-deletable tax debt.', 'Tax Document Properties', 'info')">
+                    <img src="assets/icon_notepad.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Form_730_1994.bak</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.SystemAlert('File: Unpaid_Penalty_Notice.doc\nSize: 118 KB\nStatus: Enforceable tax lien.', 'Tax Document Properties', 'warning')">
+                    <img src="assets/icon_warning.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Unpaid_Penalty.doc</span>
+                </div>
+                <div class="explorer-file-item" ondblclick="window.SystemAlert('File: Coffee_Stain_F24.bmp\nSize: 312 KB\nStatus: Physical evidence of non-compliance.', 'Tax Document Properties', 'info')">
+                    <img src="assets/icon_paint.png" width="32" height="32" style="image-rendering: pixelated;" alt="">
+                    <span>Coffee_Stain_F24.bmp</span>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-status-pane">3 object(s)</div>
+            <div class="win-status-pane">472 KB in tax liabilities</div>
+        </div>
+    </div>
+
+    <!-- FORMAT DRIVE C: (win-format) -->
+    <div id="win-format" class="win-window hidden" style="top: 90px; left: 210px; width: 330px; height: 340px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_hard_disk.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Format - Local Disk (C:)</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-content" style="padding: 12px; font-size: 11px;">
+            <div style="margin-bottom: 6px;">
+                <strong>Capacity:</strong><br>
+                <input type="text" class="win-input" value="1.20 GB (1,288,490,188 bytes)" style="width: 100%; font-size: 11px; margin-top: 2px;" readonly>
+            </div>
+            <div style="margin-bottom: 6px;">
+                <strong>File system:</strong><br>
+                <input type="text" class="win-input" value="FAT32 (Federal Audit Table 32)" style="width: 100%; font-size: 11px; margin-top: 2px;" readonly>
+            </div>
+            <div style="border: 2px groove #fff; padding: 6px; margin-bottom: 8px;">
+                <div style="font-weight: bold; margin-bottom: 3px;">Format options:</div>
+                <label style="display: block; margin-bottom: 2px;"><input type="radio" name="format-type" checked> Quick (erase)</label>
+                <label style="display: block;"><input type="radio" name="format-type"> Full audit format</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <strong>Formatting Progress:</strong>
+                <div id="format-progress-bar-bg" style="width: 100%; height: 16px; background: #ffffff; border: 2px inset #ffffff; margin-top: 3px; position: relative;">
+                    <div id="format-progress-fill" style="width: 0%; height: 100%; background: #000080; transition: width 0.2s ease;"></div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                <button type="button" id="btn-start-format" class="win-btn" style="min-width: 70px; font-weight: bold;">Start</button>
+                <button type="button" class="win-btn" style="min-width: 70px;" onclick="window.WinMgr.close('win-format')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COFFEE UTILITY (win-caffe) -->
+    <div id="win-caffe" class="win-window hidden" style="top: 100px; left: 230px; width: 350px; height: 300px;">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img src="assets/icon_cd.png" style="width:16px; height:16px; margin-right:5px; vertical-align:middle; image-rendering:pixelated;" alt="">
+                <span>Coffee.exe - CD-ROM Cup Holder</span>
+            </div>
+            <div class="win-titlebar-buttons">
+                <button type="button" class="win-title-btn win-title-btn-close">X</button>
+            </div>
+        </div>
+        <div class="win-content" style="padding: 12px; font-size: 11px; text-align: center;">
+            <div style="background: #000000; color: #22c55e; font-family: monospace; padding: 8px; border: 2px inset #fff; margin-bottom: 8px; text-align: left; font-size: 11px; line-height: 1.4;">
+                <div>PERIPHERAL: ATAPI 24X CD-ROM (D:)</div>
+                <div id="caffe-status-line">TRAY STATUS: [TRAY CLOSED]</div>
+                <div>THERMAL SENSOR: 85°C (185°F)</div>
+                <div>BEVERAGE: Hot Espresso / Americano</div>
+            </div>
+            <div style="margin: 8px 0;">
+                <img id="caffe-img-display" src="assets/icon_cd.png" width="40" height="40" style="image-rendering: pixelated; margin-bottom: 4px;" alt="">
+                <div id="caffe-cup-state" style="font-weight: bold; color: #222;">Cup tray is currently retracted.</div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+                <button type="button" id="btn-caffe-eject" class="win-btn" style="min-width: 80px;">Eject Tray</button>
+                <button type="button" id="btn-caffe-pour" class="win-btn" style="min-width: 80px;">Refill Cup</button>
+                <button type="button" class="win-btn" style="min-width: 60px;" onclick="window.WinMgr.close('win-caffe')">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVA COOKIE POPUP (TRIGGER PANDA RACE) -->
     <div id="annoying-cookie-popup" class="win-popup-dialog">
         <div class="win-titlebar" style="background: linear-gradient(90deg, #708090, #a0b0c0);">
@@ -979,12 +1100,16 @@ Type "HELP" for the list of available tax and system commands.
                 File Explorer
             </div>
             <div class="start-item" onclick="window.WinMgr.openApp('doom')">
-                <img src="assets/icon_msdos.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                <img src="assets/icon_doom.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
                 DOOM Tax 3D
             </div>
             <div class="start-item" onclick="window.WinMgr.openApp('racer')">
                 <img src="assets/icon_game.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
                 Panda Race (Getaway)
+            </div>
+            <div class="start-item" onclick="window.WinMgr.openApp('rpg')">
+                <img src="assets/icon_floppy.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">
+                Audit RPG 90s
             </div>
             <div class="start-item" onclick="window.WinMgr.openApp('minesweeper')">
                 <img src="assets/icon_minesweeper.png" width="16" height="16" style="margin-right: 8px; vertical-align: middle; image-rendering: pixelated;" alt="">

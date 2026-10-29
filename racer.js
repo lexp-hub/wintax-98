@@ -143,13 +143,19 @@ class RetroRacer {
         }
     }
 
-    win() {
+    stop() {
         this.isRunning = false;
         if (this.animFrameId) {
             cancelAnimationFrame(this.animFrameId);
             this.animFrameId = null;
         }
-        window.AudioMgr.stopMusic();
+        if (window.AudioMgr) {
+            window.AudioMgr.stopMusic();
+        }
+    }
+
+    win() {
+        this.stop();
         window.AudioMgr.playSfx('victory');
 
         alert("[PANDA_RACE.EXE]\nTOLL BOOTH REACHED!\nYou outran the IRS highway patrol cars!\nSystem notification dismissed successfully.");

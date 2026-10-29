@@ -63,6 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'System Properties',
             iconImg: 'assets/icon_computer.png'
         });
+        window.WinMgr.register('win-trash', {
+            title: 'Recycle Bin',
+            iconImg: 'assets/icon_recycle.png'
+        });
+        window.WinMgr.register('win-format', {
+            title: 'Format - Local Disk (C:)',
+            iconImg: 'assets/icon_hard_disk.png'
+        });
+        window.WinMgr.register('win-caffe', {
+            title: 'Coffee.exe',
+            iconImg: 'assets/icon_cd.png'
+        });
 
         // Open TaxReturn 4.2 window by default
         window.WinMgr.open('win-entratel');

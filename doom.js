@@ -230,10 +230,23 @@ class DoomManager {
         }
     }
 
+    stop() {
+        this.isRunning = false;
+        if (this.animFrameId) {
+            cancelAnimationFrame(this.animFrameId);
+            this.animFrameId = null;
+        }
+        if (window.AudioMgr) {
+            window.AudioMgr.stopMusic();
+        }
+    }
+
     checkVictory() {
         const remaining = this.enemies.filter(e => e.alive).length;
         if (remaining === 0) {
+            this.stop();
             setTimeout(() => {
+                window.AudioMgr.playSfx('victory');
                 alert("[DOOM_TAX.EXE]\nMISSION ACCOMPLISHED!\nAll tax audit files have been stapled and archived!\nHigh contrast mode approved.");
                 if (window.onSoulsSuccess) window.onSoulsSuccess();
                 if (this.container) this.container.classList.add('hidden');

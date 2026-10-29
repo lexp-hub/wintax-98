@@ -96,8 +96,9 @@ class WindowManager {
             if (!confirmClose) return;
         }
 
-        if (id === 'win-doom' && window.DoomGame) window.DoomGame.isRunning = false;
-        if (id === 'win-racer' && window.RacerGame) window.RacerGame.isRunning = false;
+        if (id === 'win-doom' && window.DoomGame) window.DoomGame.stop();
+        if (id === 'win-racer' && window.RacerGame) window.RacerGame.stop();
+        if (id === 'win-rpg' && window.CaptchaGame) window.CaptchaGame.stop();
 
         win.el.classList.add('hidden');
         if (this.activeWindowId === id) this.activeWindowId = null;
@@ -107,6 +108,11 @@ class WindowManager {
     minimize(id) {
         const win = this.windows[id];
         if (!win) return;
+
+        if (id === 'win-doom' && window.DoomGame) window.DoomGame.stop();
+        if (id === 'win-racer' && window.RacerGame) window.RacerGame.stop();
+        if (id === 'win-rpg' && window.CaptchaGame) window.CaptchaGame.stop();
+
         win.el.classList.add('hidden');
         win.isMinimized = true;
         if (this.activeWindowId === id) this.activeWindowId = null;
@@ -299,11 +305,11 @@ class WindowManager {
         } else if (appId === 'system-props') {
             this.open('win-system-props');
         } else if (appId === 'trash') {
-            alert("[RECYCLE BIN]\nNo tax documents may be deleted. Outstanding tax liens are retained indefinitely under Federal law.");
+            this.open('win-trash');
         } else if (appId === 'caffe') {
-            alert("[HARDWARE ERROR]\nDevice not ready. Insert a warm cup of coffee into the CD-ROM tray to proceed.");
+            this.open('win-caffe');
         } else if (appId === 'format') {
-            alert("[SYSTEM WARNING]\nCannot format drive C:\\.\n$ 4,820.00 in binding tax liens detected across hard drive clusters.");
+            this.open('win-format');
         }
     }
 }

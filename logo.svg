@@ -1,29 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 52" width="160" height="52">
   <defs>
-    <linearGradient id="win-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="win-blue-badge" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#000080"/>
-      <stop offset="100%" stop-color="#1084d0"/>
+      <stop offset="100%" stop-color="#0a246a"/>
     </linearGradient>
   </defs>
-  <!-- Background with subtle rounded corners -->
+  <!-- Background with subtle rounded corners matching Peel style -->
   <rect width="160" height="52" fill="#13151c" rx="6" stroke="#242735" stroke-width="1.5"/>
   
-  <!-- Classic Windows 98 4-color tilted tiles -->
-  <g transform="translate(14, 13)">
-    <!-- Red tile -->
-    <rect x="0" y="0" width="10" height="10" fill="#ef4444" rx="1"/>
-    <!-- Green tile -->
-    <rect x="13" y="0" width="10" height="10" fill="#22c55e" rx="1"/>
-    <!-- Blue tile -->
-    <rect x="0" y="13" width="10" height="10" fill="#3b82f6" rx="1"/>
-    <!-- Yellow tile -->
-    <rect x="13" y="13" width="10" height="10" fill="#eab308" rx="1"/>
+  <!-- Classic Windows 98 4-color grid tiles -->
+  <g transform="translate(12, 15)">
+    <rect x="0" y="0" width="9" height="9" fill="#ef4444" rx="1.5"/>
+    <rect x="11" y="0" width="9" height="9" fill="#22c55e" rx="1.5"/>
+    <rect x="0" y="11" width="9" height="9" fill="#3b82f6" rx="1.5"/>
+    <rect x="11" y="11" width="9" height="9" fill="#eab308" rx="1.5"/>
   </g>
   
-  <!-- Brand text -->
-  <text x="82" y="33" fill="#ffffff" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="2">WINTAX</text>
+  <!-- Brand text: WINTAX -->
+  <text x="39" y="32" fill="#ffffff" font-family="'JetBrains Mono', 'Fira Code', 'Segoe UI', ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="15" font-weight="900" letter-spacing="1">WINTAX</text>
   
-  <!-- 98 badge -->
-  <rect x="126" y="17" width="22" height="16" fill="#000080" rx="3" stroke="#38bdf8" stroke-width="1"/>
-  <text x="137" y="29" fill="#facc15" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="800" text-anchor="middle">98</text>
+  <!-- 98 Badge - Positioned cleanly after WINTAX with no overlap -->
+  <rect x="107" y="17" width="26" height="18" fill="url(#win-blue-badge)" rx="3" stroke="#38bdf8" stroke-width="1"/>
+  <text x="120" y="30" fill="#facc15" font-family="'JetBrains Mono', 'Segoe UI', monospace" font-size="10.5" font-weight="900" text-anchor="middle">98</text>
+  
+  <!-- Second Edition indicator -->
+  <text x="141" y="30" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="800">SE</text>
 </svg>

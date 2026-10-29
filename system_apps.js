@@ -739,7 +739,78 @@
 
 
     // =========================================================================
-    // 7. GLOBAL KEYBOARD SHORTCUTS (Ctrl+Alt+Del, Ctrl+Shift+Esc)
+    // 7. FORMAT C: AND COFFEE UTILITIES
+    // =========================================================================
+    function setupFormatUtility() {
+        const startBtn = document.getElementById('btn-start-format');
+        const fillBar = document.getElementById('format-progress-fill');
+        if (!startBtn || !fillBar) return;
+
+        let formatting = false;
+        startBtn.onclick = () => {
+            if (formatting) return;
+            formatting = true;
+            fillBar.style.width = '0%';
+            startBtn.disabled = true;
+            window.AudioMgr.playSfx('select');
+
+            let progress = 0;
+            const timer = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 5;
+                if (progress >= 96) {
+                    clearInterval(timer);
+                    fillBar.style.width = '96%';
+                    formatting = false;
+                    startBtn.disabled = false;
+                    window.AudioMgr.playSfx('chord');
+                    window.SystemAlert(
+                        "[CRITICAL FORMAT ERROR]\n\n" +
+                        "Cannot format drive C:\\.\n" +
+                        "4,820 MB of binding federal tax liens detected in master file table.\n" +
+                        "Drive format aborted under 26 U.S. Code § 7201.",
+                        "Format Error - Drive C:",
+                        "error"
+                    );
+                } else {
+                    fillBar.style.width = `${progress}%`;
+                }
+            }, 180);
+        };
+    }
+
+    function setupCoffeeUtility() {
+        const ejectBtn = document.getElementById('btn-caffe-eject');
+        const pourBtn = document.getElementById('btn-caffe-pour');
+        const statusLine = document.getElementById('caffe-status-line');
+        const cupState = document.getElementById('caffe-cup-state');
+        if (!ejectBtn) return;
+
+        let isOpen = false;
+        ejectBtn.onclick = () => {
+            isOpen = !isOpen;
+            window.AudioMgr.playSfx('screech');
+            if (isOpen) {
+                ejectBtn.innerText = 'Close Tray';
+                if (statusLine) statusLine.innerText = 'TRAY STATUS: [TRAY OPEN: CUP HOLDER READY]';
+                if (cupState) cupState.innerText = 'CD-ROM tray ejected. Place warm coffee mug on tray.';
+            } else {
+                ejectBtn.innerText = 'Eject Tray';
+                if (statusLine) statusLine.innerText = 'TRAY STATUS: [TRAY CLOSED]';
+                if (cupState) cupState.innerText = 'Cup tray is currently retracted.';
+            }
+        };
+
+        if (pourBtn) {
+            pourBtn.onclick = () => {
+                window.AudioMgr.playSfx('ding');
+                if (statusLine) statusLine.innerText = 'TRAY STATUS: [REFILL 100% - CAFFEINE BOOST ACTIVE]';
+                if (cupState) cupState.innerText = 'Fresh hot espresso poured! Taxpayer focus restored by 50%.';
+            };
+        }
+    }
+
+    // =========================================================================
+    // 8. GLOBAL KEYBOARD SHORTCUTS (Ctrl+Alt+Del, Ctrl+Shift+Esc)
     // =========================================================================
     window.addEventListener('keydown', (e) => {
         if ((e.ctrlKey && e.altKey && e.key === 'Delete') || (e.ctrlKey && e.shiftKey && e.key === 'Escape')) {
@@ -755,6 +826,8 @@
         window.CalcApp.init();
         window.DosApp.init();
         window.TaskMgrApp.init();
+        setupFormatUtility();
+        setupCoffeeUtility();
     });
 
 })();

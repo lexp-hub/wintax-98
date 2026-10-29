@@ -39,6 +39,12 @@ class CaptchaRpg {
         this.showMainMenu();
     }
 
+    stop() {
+        if (window.AudioMgr) {
+            window.AudioMgr.stopMusic();
+        }
+    }
+
     setDialogue(text) {
         if (this.dialogueEl) {
             this.dialogueEl.innerHTML = text.replace(/\n/g, '<br>');
